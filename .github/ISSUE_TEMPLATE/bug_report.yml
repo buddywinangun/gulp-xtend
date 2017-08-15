@@ -1,0 +1,51 @@
+name: 🐛Bug Report
+description: Ajukan laporan bug di sini
+title: "[BUG]: "
+labels: ["bug"]
+assignees: ["buddywinangun"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Terima kasih telah meluangkan waktu untuk mengisi laporan bug ini 🤗
+        Pastikan tidak ada issues terbuka/tertutup untuk topik ini 😃
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Keterangan bug
+      description: Beri kami gambaran singkat tentang apa yang terjadi dan apa yang seharusnya terjadi
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Langkah-langkah
+      description: Langkah-langkah untuk melihat issue terkait topik ini.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Scroll down to '...'
+        4. See error
+    validations:
+      required: true
+
+  - type: dropdown
+    id: versions
+    attributes:
+      label: Versi mana yang anda gunakan?
+      description: Jika issue ini terjadi pada lebih dari 1 versi, pilih versi yang sesuai.
+      multiple: true
+      options:
+        - 1.0.0
+        - 2.0.0
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: informasi tambahan
+      description: |
+        Berikan informasi tambahan apa pun seperti log, screenshots, skenario terjadinya bug sehingga memudahkan penyelesaian issue.

@@ -1,0 +1,23 @@
+name: ✨Feature Request
+description: Minta fitur atau penyempurnaan fitur baru
+labels: ["peningkatan"]
+title: "[FEAT]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Harap pastikan permintaan fitur ini belum dikirimkan oleh seseorang dengan melihat issues terbuka/tertutup lainnya
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Keterangan
+      description: Beri kami penjelasan singkat tentang fitur atau peningkatan yang anda inginkan
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: informasi tambahan
+      description: Beri kami beberapa informasi tambahan tentang permintaan fitur seperti solusi yang diusulkan, tautan, screenshots, dll.
