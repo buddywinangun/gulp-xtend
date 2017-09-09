@@ -5,11 +5,12 @@
  */
 
 // -- General
-const gulp = require('gulp');
 
-const requireDir = require('require-dir');
-requireDir('./tasks');
+const gulp = require('gulp');
 
 // ---------------------------------------------------
 // -- GULP TASKS
 // ---------------------------------------------------
+
+const requireDir = require('require-dir');
+requireDir('./tasks');
