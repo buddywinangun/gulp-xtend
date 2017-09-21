@@ -23,7 +23,7 @@ const arg = (argList => {
   return arg;
 })(process.argv);
 
-module.exports.config = {
+module.exports = {
   paths: {
     start: './start/',
     projects: './projects/',
