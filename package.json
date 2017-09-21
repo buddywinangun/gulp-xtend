@@ -6,14 +6,27 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "gulp",
+    "projects-build"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/buddywinangun/gulp-project.git"
   },
-  "author": "Buddy Winangun",
+  "engines": {
+    "node": ">= 10.x",
+    "npm": ">= 6.0.0"
+  },
+  "author": "Buddy Winangun (buddywinangun@gmail.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/buddywinangun/gulp-project/issues"
   },
-  "homepage": "https://github.com/buddywinangun/gulp-project#readme"
+  "homepage": "https://github.com/buddywinangun/gulp-project#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "require-dir": "^1.2.0"
+  }
 }
