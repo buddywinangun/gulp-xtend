@@ -28,7 +28,7 @@
   "devDependencies": {
     "directory-exists": "^2.0.1",
     "gulp": "^4.0.2",
-    "gulp-msg": "0.0.4",
+    "gulp-msg": "^0.0.4",
     "require-dir": "^1.2.0"
   }
 }
