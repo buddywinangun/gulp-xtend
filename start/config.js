@@ -24,6 +24,14 @@ module.exports = {
   },
 
   //
+  // Language Direction
+  //
+
+  languageDirection: {
+    lang: 'en' // e.g. en, ar
+  },
+
+  //
   // Skip CSS & JavaScript files from bundle files (e.g. vendor.min.css)
   //
 

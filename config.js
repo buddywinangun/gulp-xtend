@@ -63,10 +63,30 @@ module.exports = {
   },
 
   //
+  // Uglify setup | setup of dev or prod env build
+  //
+
+  uglify: {
+    prod: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
+    dev: {
+      compress: {
+        drop_console: false,
+        drop_debugger: false
+      }
+    }
+  },
+
+  //
   // Settings | Turn on/off build features
   //
 
   settings: {
+    script: true,
     clean: true,
     style: true,
     static: true,

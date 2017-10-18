@@ -58,6 +58,24 @@ module.exports = {
     }
   },
 
+  script: {
+    dir: (data) => {
+      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+      let path = data.dir + dirVersion + SOURCE + 'js/';
+      return path;
+    },
+    input: (data) => {
+      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+      let path = data.dir + dirVersion + SOURCE + 'js/*.js';
+      return path;
+    },
+    output: (data) => {
+      let dirVersion = (data.version.output == '/' ? '' : data.version.output + '/');
+      let path = data.dir + dirVersion + BUILD + 'assets/js/';
+      return path;
+    },
+  },
+
   static: {
     input: (data) => {
       let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');

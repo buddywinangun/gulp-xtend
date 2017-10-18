@@ -28,6 +28,7 @@ gulp.task('gulp:compile', function (callback) {
     'compile-template',
     'compile-static',
     'compile-style',
+    'compile-script',
     callback
   );
 });

@@ -1,5 +1,5 @@
 /**
- * clean.js
+ * style.js
  *
  * The gulp task runner file.
  */
@@ -23,7 +23,6 @@ const postcss = require("gulp-postcss");
 const autoprefixer = require("gulp-autoprefixer");
 const cssnano = require("cssnano");
 const cleanCss = require("gulp-clean-css");
-
 
 // ---------------------------------------------------
 // -- GULP TASKS

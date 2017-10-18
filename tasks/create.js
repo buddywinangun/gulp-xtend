@@ -73,6 +73,9 @@ gulp.task('create', done => {
         msg.Warning('BUILD DEVELOP    : gulp --project <%= name %>', {
           name: nameProject
         });
+        msg.Warning('BUILD PRODUCTION : gulp --project <%= name %> --prod', {
+          name: nameProject
+        });
         msg.Note('');
         msg.Info('~', '(c) ' + new Date().getFullYear() + ' gulp project', '~');
 
