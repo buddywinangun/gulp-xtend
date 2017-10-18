@@ -12,7 +12,8 @@ const directoryExists = require("directory-exists");
 
 // -- Config
 
-const config = require('./config');
+const config = require('../config');
+const cli = require('../config/command');
 
 // ---------------------------------------------------
 // -- GULP TASKS
@@ -20,8 +21,8 @@ const config = require('./config');
 
 gulp.task('create', done => {
 
-  const nameProject = config.project && config.project.length > 0 ? config.project : '';
-  const directory = config.paths.projects + nameProject;
+  const nameProject = cli.project && cli.project.length > 0 ? cli.project : '';
+  const dirProject = config.paths.projects + nameProject;
 
   // -- Create Project Starter kit
 
@@ -42,12 +43,12 @@ gulp.task('create', done => {
   // -- Running of create project
 
   if (validateName(nameProject)) {
-    directoryExists(directory).then(result => {
+    directoryExists(dirProject).then(result => {
       if (!result) {
 
         // -- Project create starter
 
-        createStarterProject(directory);
+        createStarterProject(dirProject);
 
         // -- Message notice
 
@@ -59,7 +60,18 @@ gulp.task('create', done => {
           name: nameProject
         });
         msg.Warning('Project dir.     : <%= dir %>', {
-          dir: directory
+          dir: dirProject
+        });
+        msg.Note('');
+        msg.Note('~', 'Task Running Script', '~');
+        msg.Warning('SERVING          : gulp serve --project <%= name %>', {
+          name: nameProject
+        });
+        msg.Warning('WATCHING         : gulp watch --project <%= name %>', {
+          name: nameProject
+        });
+        msg.Warning('BUILD DEVELOP    : gulp --project <%= name %>', {
+          name: nameProject
         });
         msg.Note('');
         msg.Info('~', '(c) ' + new Date().getFullYear() + ' gulp project', '~');

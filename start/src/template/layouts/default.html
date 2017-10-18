@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{languageDirection.lang}}">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+  <title>{{ title | safe }}</title>
+
+  {% include "partials/head.html" %}
+
+  {% block vendorCSS %}
+  <!-- Vendor CSS -->
+  <!-- bundlecss:vendor [@@autopath] {{"?v="+data.version}} -->
+  {%- endblock -%}
+
+  {% block styles %}
+  <!-- CSS -->
+  <link rel="stylesheet" href="@@autopath/assets/css/theme.css{{"?v="+data.version}}">
+  {%- endblock -%}
+
+  {% block head %}
+  <!-- External page head section -->
+  {%- endblock -%}
+</head>
+
+<body {{ bodyAttr | safe if bodyAttr }}>
+  {%- block content -%}
+  <!-- Content -->
+  {%- endblock -%}
+
+  {% block vendorJS %}
+  <!-- Vendor JS -->
+  <!-- bundlejs:vendor [@@autopath] {{"?v="+data.version}} -->
+  {% endblock -%}
+
+  {%- block scripts -%}
+  <!-- JS -->
+  <script src="@@autopath/assets/js/theme.js{{"?v="+data.version}}" defer></script>
+  {%- endblock -%}
+</body>
+
+</html>

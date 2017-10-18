@@ -1,0 +1,17 @@
+{
+  "title": "SITE TEMPLATES PROJECT",
+  "name": "project-name",
+  "version": "0.1.0",
+  "description": "Project description.",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://link-to-your-git-repo.com"
+  },
+  "author": "Nama Anda (your@email.com)",
+  "license": "MIT",
+  "homepage": "http://link-to-your-website.com"
+}

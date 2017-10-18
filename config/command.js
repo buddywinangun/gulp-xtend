@@ -1,12 +1,14 @@
 /**
- * config.js
+ * command.js
  *
  * The gulp configuration file.
  */
 
+//
 // -- fetch command line arguments
+//
 
-const arg = (argList => {
+module.exports = (argList => {
   let arg = {},
     a, opt, thisOpt, curOpt;
   for (a = 0; a < argList.length; a++) {
@@ -22,11 +24,3 @@ const arg = (argList => {
   }
   return arg;
 })(process.argv);
-
-module.exports = {
-  paths: {
-    start: './start/',
-    projects: './projects/',
-  },
-  ...arg
-};
