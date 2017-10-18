@@ -7,12 +7,15 @@
 Fitur utama meliputi:
 
 - Create Project
+- **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
 
 ## Tools Supported
 
 Alat pendukung yang tersedia untuk membangun proyek yang luar biasa.
 
 - [**GULP 4**](https://gulpjs.com/) Otomatiskan dan tingkatkan alur kerja Anda.
+- [**Nunjucks**](https://mozilla.github.io/nunjucks/) templating yang kaya dan kuat untuk JavaScript.
+- [**Browsersync**](https://browsersync.io/) dengan memuat ulang langsung.
 
 ## Release
 
@@ -55,6 +58,21 @@ gulp create --project [project-name]
 > - Nama proyek tidak boleh kosong
 > - Nama proyek minimal harus 3 karakter
 > - nama proyek disarankan tidak menggunakan `spasi` ataupun karakter khusus `(! @ # $ % ^ & * () " ; : < > , ? /)`
+
+- Serve or watch Project
+
+Saat kita memulai proses `serve`, task runner ini menggunakan `env` **development** dan secara otomatis `melihat` perubahan yang Anda buat pada kode.
+```sh
+gulp serve --project [project-name]
+```
+```sh
+gulp watch --project [project-name]
+```
+
+- Development Build Project
+```sh
+gulp --project [project-name]
+```
 
 ## Contributing
 
