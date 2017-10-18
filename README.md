@@ -9,6 +9,7 @@ Fitur utama meliputi:
 - Create Project
 - Auto-organized static assets like img, font and other file types.
 - **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
+- **Minifies** and **optimize** your css.
 
 ## Tools Supported
 
@@ -17,6 +18,7 @@ Alat pendukung yang tersedia untuk membangun proyek yang luar biasa.
 - [**GULP 4**](https://gulpjs.com/) Otomatiskan dan tingkatkan alur kerja Anda.
 - [**Nunjucks**](https://mozilla.github.io/nunjucks/) templating yang kaya dan kuat untuk JavaScript.
 - [**Browsersync**](https://browsersync.io/) dengan memuat ulang langsung.
+- [**Sass**](http://sass-lang.com/) CSS pre-processor dengan [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
 
 ## Release
 
