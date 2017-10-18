@@ -1,6 +1,6 @@
 {
   "name": "gulp-project",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A Starter kit for building web projects with Gulp.js",
   "main": "index.js",
   "scripts": {

@@ -8,8 +8,10 @@ Fitur utama meliputi:
 
 - Create Project
 - Auto-organized static assets like img, font and other file types.
+- Can easily develop themes using popular web frameworks like [Bootstrap](https://getbootstrap.com/), [Tailwind CSS](https://tailwindcss.com/).
 - **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
 - **Minifies** and **optimize** your css.
+- **Webpack Compiler js** Code splitting, `es/ejs/amd` format, dan js Next-Gen ditangani oleh kompiler **webpack-stream**
 
 ## Tools Supported
 
@@ -19,6 +21,8 @@ Alat pendukung yang tersedia untuk membangun proyek yang luar biasa.
 - [**Nunjucks**](https://mozilla.github.io/nunjucks/) templating yang kaya dan kuat untuk JavaScript.
 - [**Browsersync**](https://browsersync.io/) dengan memuat ulang langsung.
 - [**Sass**](http://sass-lang.com/) CSS pre-processor dengan [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
+- [**Webpack**](https://webpack.js.org/) Bundel modul untuk JavaScript
+- [**ES2015 Babel**](https://babeljs.io/) Transpiler yang memungkinkan Anda menulis Kode JS dengan gaya ES2015/ES6.
 
 ## Release
 
@@ -75,6 +79,11 @@ gulp watch --project [project-name]
 - Development Build Project
 ```sh
 gulp --project [project-name]
+```
+
+- Production Build Project
+```sh
+gulp --project [project-name] --prod
 ```
 
 ## Contributing
