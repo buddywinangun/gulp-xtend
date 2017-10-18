@@ -7,6 +7,7 @@
 Fitur utama meliputi:
 
 - Create Project
+- Auto-organized static assets like img, font and other file types.
 - **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
 
 ## Tools Supported
