@@ -4,10 +4,10 @@
  * The gulp configuration file.
  */
 
-const directoryExists = require("directory-exists");
-const fs = require("fs");
 const path = require('./config/path');
 const cli = require('./config/command');
+const directoryExists = require("directory-exists");
+const fs = require("fs");
 const notify = require("gulp-notify");
 
 // -- ErrorHandler
@@ -44,9 +44,7 @@ module.exports = {
 
   utils: {
     errorHandler,
-    autopath: "@@autopath",
     deleteLine: "builder:delete",
-    previewMode: false,
   },
 
   //
@@ -55,6 +53,7 @@ module.exports = {
 
   settings: {
     clean: true,
+    static: true,
     template: true,
   },
 

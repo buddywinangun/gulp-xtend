@@ -19,6 +19,8 @@ const config = require('../config');
 // ---------------------------------------------------
 
 gulp.task('clean', done => {
+  if (!config.settings.clean) return done();
+
   del.sync([config.paths.build(config.project)], {
     force: true
   })

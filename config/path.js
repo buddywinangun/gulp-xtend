@@ -37,6 +37,19 @@ module.exports = {
     }
   },
 
+  static: {
+    input: (data) => {
+      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+      let path = data.dir + dirVersion + SOURCE + 'static/**/*';
+      return path;
+    },
+    output: (data) => {
+      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
+      let path = data.dir + dirVersion + BUILD + 'assets/';
+      return path;
+    }
+  },
+
   build: (data) => {
     let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
     let path = data.dir + dirVersion + BUILD;

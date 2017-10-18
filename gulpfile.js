@@ -26,6 +26,7 @@ gulp.task('gulp:compile', function (callback) {
   runSequence(
     'clear-cache',
     'compile-template',
+    'compile-static',
     callback
   );
 });
