@@ -27,6 +27,7 @@ gulp.task('gulp:compile', function (callback) {
     'clear-cache',
     'compile-template',
     'compile-static',
+    'compile-style',
     callback
   );
 });

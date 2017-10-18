@@ -17,8 +17,9 @@ const config = require('../config');
 // ---------------------------------------------------
 
 gulp.task('compile-static', done => {
+
   if (!config.settings.static) return done();
 
   return gulp.src(config.paths.static.input(config.project))
-      .pipe(gulp.dest(config.paths.static.output(config.project)));
+    .pipe(gulp.dest(config.paths.static.output(config.project)));
 });

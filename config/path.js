@@ -37,6 +37,27 @@ module.exports = {
     }
   },
 
+  node: {
+    dir: (data) => {
+      let dirVersion = (data.version.input == '' ? '' : data.version.input + '/');
+      let path = data.dir + dirVersion + 'node_modules/';
+      return path;
+    }
+  },
+
+  style: {
+    input: (data) => {
+      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+      let path = data.dir + dirVersion + SOURCE + 'scss/**/*.scss';
+      return path;
+    },
+    output: (data) => {
+      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
+      let path = data.dir + dirVersion + BUILD + 'assets/css/';
+      return path;
+    }
+  },
+
   static: {
     input: (data) => {
       let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');

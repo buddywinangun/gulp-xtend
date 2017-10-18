@@ -39,12 +39,27 @@ module.exports = {
   },
 
   //
+  // Header Template | Append of header in script js or css
+  //
+
+  header: {
+    main: ['/**',
+      ' * <%= package.title %> v<%= package.version %> <%= "("+package.homepage+")" %>',
+      ' * Copyright ' + (new Date()).getFullYear() + ' <%= package.author %>',
+      ' * Licensed under <%= package.license %>',
+      ' */',
+      ''
+    ].join('\n')
+  },
+
+  //
   // util config
   //
 
   utils: {
     errorHandler,
     deleteLine: "builder:delete",
+    isProd: cli.production === true,
   },
 
   //
@@ -53,6 +68,7 @@ module.exports = {
 
   settings: {
     clean: true,
+    style: true,
     static: true,
     template: true,
   },
