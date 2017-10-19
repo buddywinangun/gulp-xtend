@@ -6,7 +6,8 @@ Semua perubahan penting pada proyek ini akan didokumentasikan dalam file ini.
 
 | Release | Status          | Initial Release | Active LTS Start | Maintenance LTS Start | End-of-life |
 | :-----: | :-------------: | :-------------: | :--------------: | :-------------------: | :---------: |
-| 1.x     | **Pending**     | TBD             | TBD              | TBD                   | TBD         |
+| 1.x     | **Current**     | 19-10-2017      | TBD              | TBD                   | TBD         |
+| 2.x     | **Pending**     | TBD             | TBD              | TBD                   | TBD         |
 
 
 ## Release Phases
@@ -24,6 +25,6 @@ Rilis baru dibuat dari branch `master` ke versi mayor *Active*. Lihat [Releases 
 Format didasarkan pada [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 dan menggunakan [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/buddywinangun/gulp-project/compare/0.0.0...HEAD)
+## [Unreleased](https://github.com/buddywinangun/gulp-project/compare/1.0.0...HEAD)
 
 ## [Release Changelog](https://github.com/buddywinangun/gulp-project/releases)
