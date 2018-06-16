@@ -6,9 +6,10 @@ Semua perubahan penting pada proyek ini akan didokumentasikan dalam file ini.
 
 | Release | Status          | Initial Release | Active LTS Start | Maintenance LTS Start | End-of-life |
 | :-----: | :-------------: | :-------------: | :--------------: | :-------------------: | :---------: |
-| 1.x     | **Current**     | 19-10-2017      | TBD              | TBD                   | TBD         |
+| [1.x][] | **Current**     | 2017-10-19      | TBD              | TBD                   | TBD         |
 | 2.x     | **Pending**     | TBD             | TBD              | TBD                   | TBD         |
 
+[1.x]: https://github.com/buddywinangun/gulp-project/tree/1.0.0
 
 ## Release Phases
 
