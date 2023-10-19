@@ -152,3 +152,89 @@ gulp.task('compile-template', done => {
       .pipe(gulp.dest(config.paths.template.output(config.project)));
   }
 });
+
+gulp.task('bundle-vendor-css', done => {
+
+  setvendor_css = new Set(vendor_css)
+
+  if ([...setvendor_css].length) {
+    return gulp
+      .src([...setvendor_css])
+      .pipe(cleanCSS({
+        compatibility: 'ie11'
+      }))
+      .pipe(concat('vendor.css'))
+      .pipe(gulp.dest(config.paths.style.output(config.project)));
+  } else {
+    return new Promise(function (resolve, reject) {
+      resolve();
+    });
+  }
+});
+
+gulp.task('bundle-vendor-js', done => {
+
+  setvendor_js = new Set(vendor_js)
+
+  if ([...setvendor_js].length) {
+    return gulp
+      .src([...setvendor_js], {
+        allowEmpty: true,
+      })
+      .pipe(concat('vendor.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest(config.paths.script.output(config.project)));
+  } else {
+    return new Promise(function (resolve, reject) {
+      resolve();
+    });
+  }
+});
+
+gulp.task('copySkippedNodeFiles', done => {
+
+  SetskippedNodeFiles = new Set(skippedNodeFiles)
+
+  if ([...SetskippedNodeFiles].length) {
+    return gulp
+      .src([...SetskippedNodeFiles])
+      .pipe(gulp.dest(config.paths.vendor(config.project)))
+  } else {
+    return new Promise(function (resolve, reject) {
+      resolve();
+    });
+  }
+});
+
+gulp.task('copySkippedFiles', done => {
+
+  SetskippedFiles = new Set(skippedFiles)
+
+  if ([...SetskippedFiles].length) {
+    return gulp
+      .src([...SetskippedFiles])
+      .pipe(gulp.dest(config.paths.build(config.project)))
+  } else {
+    return new Promise(function (resolve, reject) {
+      resolve();
+    });
+  }
+});
+
+gulp.task('copyDependencies', done => {
+
+  for (var k in config.project.copyDependencies) {
+    path = '../' + config.project.dir + k;
+
+    if (k.search('node_modules') !== 0) {
+      path = '../' + config.project.dir + 'src' + '/' + k
+    }
+
+    gulp.src(path)
+      .pipe(gulp.dest(config.paths.build(config.project) + config.project.copyDependencies[k]))
+  }
+
+  return new Promise(function (resolve, reject) {
+    resolve();
+  });
+});

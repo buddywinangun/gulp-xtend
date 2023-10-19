@@ -38,6 +38,18 @@ module.exports = {
   skipFilesFromBundle: [],
 
   //
+  // Copy/Paste files and folders into different path
+  //
+
+  copyDependencies: {},
+
+  //
+  // Files types that will be copied to the ./build/* folder
+  //
+
+  fileTypes: "jpg|png|svg|mp4|webm|ogv|json",
+
+  //
   // Theme Appearance
   //
 

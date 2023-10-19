@@ -29,6 +29,11 @@ gulp.task('gulp:compile', function (callback) {
     'compile-static',
     'compile-style',
     'compile-script',
+    'bundle-vendor-css',
+    'bundle-vendor-js',
+    'copySkippedNodeFiles',
+    'copySkippedFiles',
+    'copyDependencies',
     callback
   );
 });
