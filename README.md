@@ -1,17 +1,21 @@
 ## About Gulp Project
 
-**Gulp Project** adalah alat yang kami rancang menggunakan [gulp.js](https://gulpjs.com/) dan fleksibilitas JavaScript sebagai prototipe template HTML5 multi-project yang bertujuan untuk memudahkan pengembang front-end dalam membangun antarmuka pengguna yang dituangkan dalam bentuk visual web dari desain yang telah ditentukan dengan arsitektur yang baik.
+**Gulp Project** adalah alat yang kami rancang sebagai prototipe template HTML5 multi-project yang bertujuan untuk memudahkan pengembang front-end dalam membangun antarmuka pengguna yang dituangkan dalam bentuk visual web dari desain yang telah ditentukan dengan arsitektur yang baik menggunakan [gulp.js](https://gulpjs.com/) dan fleksibilitas JavaScript.
 
 ## Features
 
 Fitur utama meliputi:
 
 - Create Project
-- Auto-organized static assets like img, font and other file types.
+- Optimize SVGs.
+- Copy static files and folders into your `dist` directory.
 - Can easily develop themes using popular web frameworks like [Bootstrap](https://getbootstrap.com/), [Tailwind CSS](https://tailwindcss.com/).
+- Automatically add headers and project details to JS and CSS files.
 - **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
-- **Minifies** and **optimize** your css.
+- Compile, minify, autoprefix, and lint Sass.
+- Concatenate, minify, and lint JavaScript.
 - **Webpack Compiler js** Code splitting, `es/ejs/amd` format, dan js Next-Gen ditangani oleh kompiler **webpack-stream**
+- Watch for file changes, and automatically recompile build and reload webpages.
 
 ## Tools Supported
 
