@@ -86,10 +86,12 @@ module.exports = {
   //
 
   settings: {
-    script: true,
+    svgs: true,
     clean: true,
     style: true,
+    script: true,
     static: true,
+    reload: true,
     template: true,
   },
 
