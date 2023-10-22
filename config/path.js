@@ -45,10 +45,10 @@ module.exports = {
     }
   },
 
-  style: {
+  sass: {
     input: (data) => {
       let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'scss/**/*.scss';
+      let path = data.dir + dirVersion + SOURCE + 'sass/**/*.scss';
       return path;
     },
     output: (data) => {

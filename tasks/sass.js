@@ -1,5 +1,5 @@
 /**
- * style.js
+ * sass.js
  *
  * The gulp task runner file.
  */
