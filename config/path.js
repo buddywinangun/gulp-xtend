@@ -19,86 +19,49 @@ module.exports = {
 
   projects: PROJECTS,
 
-  template: {
-    input: (data) => {
-      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'template/pages/**/*.html';
-      return path;
-    },
-    output: (data) => {
-      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
-      let path = data.dir + dirVersion + BUILD;
-      return path;
-    },
-    templates: (data) => {
-      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
-      let path = data.dir + dirVersion + SOURCE + 'template/';
-      return path;
+  template: (data) => {
+    let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+    return {
+      src: data.dir + dirVersion + SOURCE,
+      build: data.dir + dirVersion + BUILD
     }
   },
 
-  node: {
-    dir: (data) => {
-      let dirVersion = (data.version.input == '' ? '' : data.version.input + '/');
-      let path = data.dir + dirVersion + 'node_modules/';
-      return path;
+  sass: (data) => {
+    let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+    return {
+      src: data.dir + dirVersion + SOURCE + 'sass',
+      build: data.dir + dirVersion + BUILD + 'assets/css'
     }
   },
 
-  sass: {
-    input: (data) => {
-      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'sass/**/*.scss';
-      return path;
-    },
-    output: (data) => {
-      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
-      let path = data.dir + dirVersion + BUILD + 'assets/css/';
-      return path;
+  script: (data) => {
+    let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+    return {
+      src: {
+        dir: data.dir + dirVersion + SOURCE + 'js',
+        filename: 'index.js'
+      },
+      build: {
+        dir: data.dir + dirVersion + BUILD + 'assets/js',
+        filename: 'script.js'
+      }
     }
   },
 
-  script: {
-    dir: (data) => {
-      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'js/';
-      return path;
-    },
-    input: (data) => {
-      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'js/*.js';
-      return path;
-    },
-    output: (data) => {
-      let dirVersion = (data.version.output == '/' ? '' : data.version.output + '/');
-      let path = data.dir + dirVersion + BUILD + 'assets/js/';
-      return path;
-    },
-  },
-
-  static: {
-    input: (data) => {
-      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'static/**/*';
-      return path;
-    },
-    output: (data) => {
-      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
-      let path = data.dir + dirVersion + BUILD + 'assets/';
-      return path;
+  svgs: (data) => {
+    let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+    return {
+      src: data.dir + dirVersion + SOURCE + 'svg/**/*.svg',
+      build: data.dir + dirVersion + BUILD + 'assets/svg'
     }
   },
 
-  svgs: {
-    input: (data) => {
-      let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
-      let path = data.dir + dirVersion + SOURCE + 'svg/**/*.svg';
-      return path;
-    },
-    output: (data) => {
-      let dirVersion = (data.version.output == '' ? '/' : data.version.output + '/');
-      let path = data.dir + dirVersion + BUILD + 'assets/svg/';
-      return path;
+  static: (data) => {
+    let dirVersion = (data.version.input == '' ? '/' : data.version.input + '/');
+    return {
+      src: data.dir + dirVersion + SOURCE + 'static/**/*',
+      build: data.dir + dirVersion + BUILD + 'assets/'
     }
   },
 

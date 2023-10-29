@@ -7,68 +7,113 @@
 // -- General
 
 const gulp = require('gulp');
-const header = require("gulp-header");
 const sourcemaps = require("gulp-sourcemaps");
+const replace = require("gulp-replace");
+const rename = require("gulp-rename");
 const noop = require("gulp-noop");
 const plumber = require("gulp-plumber");
+const path = require('path');
+const stripIndent = require('strip-indent');
+const fs = require("fs");
 
+// -- SASS
+
+const header = require("gulp-header");
+const sass = require("gulp-sass")(require('sass'));
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const cleancss = require("gulp-clean-css");
+const trim = require('../helpers/trim');
+
+// ---------------------------------------------------
 // -- Config
+// ---------------------------------------------------
 
 const config = require('../config');
 
-// -- Styles
+const opts = config.paths.sass(config.project);
 
-const sass = require("gulp-sass")(require('sass'));
-const postcss = require("gulp-postcss");
-const autoprefixer = require("gulp-autoprefixer");
-const cssnano = require("cssnano");
-const cleanCss = require("gulp-clean-css");
+const sassOpts = {
+  compile: {
+    src: path.join(process.cwd(), opts.src, '*.scss'),
+    dest: path.join(process.cwd(), opts.build),
+    banner: {
+      text: path.join(process.cwd(), config.project.banner),
+      data: config.project
+    }
+  }
+};
 
 // ---------------------------------------------------
 // -- GULP TASKS
 // ---------------------------------------------------
 
-gulp.task('compile-style', done => {
+gulp.task('sass-compile', (done) => {
 
-	// Make sure this feature is activated before running
-  if (!config.settings.style) return done();
+  // Make sure this feature is activated before running
+  if (!config.settings.sass) return done();
 
-	// Run tasks on all Sass files
-  return gulp.src(config.paths.style.input(config.project))
+  const banner = {
+    text: stripIndent(
+      fs.readFileSync(sassOpts.compile.banner.text, 'utf8').trim()
+    ) + '\n\n',
+    data: sassOpts.compile.banner.data
+  };
+
+  // theme.ext
+  let buildExt = '.css'; // .ext
+
+  // Run tasks on all Sass files
+  gulp.src(sassOpts.compile.src)
     .pipe(plumber(config.utils.errorHandler))
-    .pipe(config.utils.isProd ? noop() : sourcemaps.init())
     .pipe(
       sass.sync({
         outputStyle: config.utils.isProd ? 'compressed' : 'expanded',
-        includePaths: [config.paths.node.dir(config.project)],
+        charset: true,
+        importer: [
+          require('node-sass-package-importer')(),
+          require('node-sass-glob-importer')()
+        ],
       }).on('error', sass.logError)
     )
-    .pipe(autoprefixer({
-      cascade: true,
-      remove: true
+    .pipe(postcss([
+      autoprefixer({
+        cascade: false,
+        remove: true
+      })
+    ]))
+    .pipe(replace('/*!', '/*'))
+    .pipe(rename(function (p) {
+      p.extname = buildExt;
     }))
-    .pipe(header(config.project.header.main, {
-      package: config.project.data
+    .pipe(trim())
+    .pipe(!config.utils.isProd ? noop() : cleancss({
+      compatibility: 'ie11',
+      level: {
+        1: {
+          specialComments: 0
+        }
+      }
     }))
-    .pipe(!config.utils.isProd ? noop() :
-      postcss([
-        cssnano({
-          discardComments: {
-            removeAll: true
-          }
-        })
-      ])
-    )
-    .pipe(!config.utils.isProd ? noop() :
-      cleanCss({
-        compatibility: 'ie11',
-        level: {
-          1: {
-            specialComments: 0
-          }
+    .pipe(!config.utils.isProd ? noop() : postcss([
+      cssnano({
+        discardComments: {
+          removeAll: true
         }
       })
-    )
+    ]))
+    .pipe(header(banner.text, banner.data))
+    .pipe(config.utils.isProd ? noop() : sourcemaps.init())
     .pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
-    .pipe(gulp.dest(config.paths.style.output(config.project)));
+    .pipe(gulp.dest(sassOpts.compile.dest, {
+      overwrite: true
+    }));
+
+  // Signal completion
+  done();
 });
+
+gulp.task('sass-tasks', gulp.series(
+  'sass-compile'
+));

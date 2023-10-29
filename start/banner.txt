@@ -1,7 +1,9 @@
 /*!
- * Theme Name    : <%= data.title %>
- * URI           : <%= data.homepage %>
- * Version       : <%= data.version %>
- * Author        : <%= data.author %>
- * License       : <%= data.license %>
+ * Theme Name    : <%= data.name %>
+ * Theme URI     : <%= data.homepage %>
+ * Theme Version : <%= data.version %>
+ * Author        : <%= data.author.name %>
+ * Author URI    : <%= data.author.url %>
+ * License       : <%= data.license.name %>
+ * License URI   : <%= data.license.url %>
  */

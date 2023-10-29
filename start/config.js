@@ -25,20 +25,6 @@ module.exports = {
   },
 
   //
-  // Header Template | Append of header in script js or css
-  //
-
-  header: {
-    main: ['/**',
-      ' * <%= package.title %> v<%= package.version %> <%= "("+package.homepage+")" %>',
-      ' * Copyright ' + (new Date()).getFullYear() + ' <%= package.author.name %>',
-      ' * Licensed under <%= package.license %>',
-      ' */',
-      ''
-    ].join('\n')
-  },
-
-  //
   // Language Direction
   //
 

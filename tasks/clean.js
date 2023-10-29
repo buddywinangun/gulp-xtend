@@ -10,7 +10,9 @@ const gulp = require('gulp');
 const del = require("del");
 const cache = require("gulp-cached");
 
+// ---------------------------------------------------
 // -- Config
+// ---------------------------------------------------
 
 const config = require('../config');
 
@@ -35,5 +37,7 @@ gulp.task('clean', done => {
 
 gulp.task('clear-cache', done => {
   cache.caches = {};
+
+	// Signal completion
   done();
 });

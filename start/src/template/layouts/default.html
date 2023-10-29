@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
   <title>{{ title | safe }}</title>
 
-  {% include "partials/head.html" %}
+  {% include "../partials/head.html" %}
 
   {% block vendorCSS %}
   <!-- Vendor CSS -->
@@ -15,7 +15,7 @@
 
   {% block styles %}
   <!-- CSS -->
-  <link rel="stylesheet" href="@@autopath/assets/css/theme.css{{"?v="+data.version}}">
+  <link rel="stylesheet" href="@@autopath/assets/css/style.css{{"?v="+data.version}}">
   {%- endblock -%}
 
   {% block head %}
@@ -35,7 +35,7 @@
 
   {%- block scripts -%}
   <!-- JS -->
-  <script src="@@autopath/assets/js/theme.js{{"?v="+data.version}}" defer></script>
+  <script src="@@autopath/assets/js/script.js{{"?v="+data.version}}" defer></script>
   {%- endblock -%}
 </body>
 

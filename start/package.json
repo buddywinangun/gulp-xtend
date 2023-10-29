@@ -11,7 +11,10 @@
 		"name": "YOUR NAME",
 		"url": "http://link-to-your-website.com"
 	},
-	"license": "MIT",
+	"license": {
+		"name": "MIT",
+    "url": "https://opensource.org/licenses/MIT"
+	},
   "repository": {
     "type": "git",
     "url": "http://link-to-your-git-repo.com"

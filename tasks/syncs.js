@@ -7,9 +7,12 @@
 // -- General
 
 const gulp = require('gulp');
-const browserSync = require("browser-sync");
+const browserSync = require("browser-sync").create();
+const cli = require('../helpers/cli');
 
+// ---------------------------------------------------
 // -- Config
+// ---------------------------------------------------
 
 const config = require('../config');
 
@@ -17,7 +20,7 @@ const config = require('../config');
 // -- GULP TASKS
 // ---------------------------------------------------
 
-gulp.task('runServer', done => {
+gulp.task('runServer', (done) => {
 
 	// Make sure this feature is activated before running
 	if (!config.settings.reload) return done();
@@ -27,7 +30,7 @@ gulp.task('runServer', done => {
     server: {
       baseDir: [config.paths.build(config.project)]
     },
-    port: 8080,
+    port: cli.port ? Number(cli.port) : 9000,
     open: true
   });
 
@@ -35,7 +38,7 @@ gulp.task('runServer', done => {
 	done();
 });
 
-gulp.task('reload', done => {
+gulp.task('reload', (done) => {
 
 	// Make sure this feature is activated before running
 	if (!config.settings.reload) return done();

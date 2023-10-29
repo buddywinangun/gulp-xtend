@@ -8,20 +8,37 @@
 
 const gulp = require('gulp');
 
+// ---------------------------------------------------
 // -- Config
+// ---------------------------------------------------
 
 const config = require('../config');
+
+const opts = config.paths.static(config.project);
+
+const staticOpts = {
+  compile: {
+    src: path.join(process.cwd(), opts.src),
+    dest: path.join(process.cwd(), opts.build)
+  }
+};
 
 // ---------------------------------------------------
 // -- GULP TASKS
 // ---------------------------------------------------
 
-gulp.task('compile-static', done => {
+gulp.task('static-compile', done => {
 
-	// Make sure this feature is activated before running
+  // Make sure this feature is activated before running
   if (!config.settings.static) return done();
 
-	// Copy static files
-  return gulp.src(config.paths.static.input(config.project))
-    .pipe(gulp.dest(config.paths.static.output(config.project)));
+  // Copy static files
+  return gulp.src(staticOpts.compile.src)
+    .pipe(gulp.dest(staticOpts.compile.dest, {
+      overwrite: true
+    }));
 });
+
+gulp.task('static-tasks', gulp.series(
+  'static-compile'
+));

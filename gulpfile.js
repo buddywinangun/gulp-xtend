@@ -20,33 +20,26 @@ const config = require('./config');
 const requireDir = require('require-dir');
 requireDir('./tasks');
 
-// -- Compile task runner
+// ---------------------------------------------------
+// -- Task Definitions
+// ---------------------------------------------------
 
-gulp.task('gulp:compile', function (callback) {
+gulp.task('compile', (callback) => {
   runSequence(
-    'clear-cache',
-    'compile-template',
-    'compile-static',
-    'compile-style',
-    'compile-script',
-    'compile-svgs',
-    'bundle-vendor-css',
-    'bundle-vendor-js',
-    'copySkippedNodeFiles',
-    'copySkippedFiles',
-    'copyDependencies',
+    'sass-tasks',
+    'svgs-tasks',
+    'script-tasks',
+    'template-tasks',
     callback
   );
 });
 
-// -- watch task runner
-
 gulp.task('watch', done => {
-  const pathWatch = config.paths.watch(config.project);
-
-  gulp.watch(pathWatch, callback => {
+  gulp.watch([
+    config.paths.watch(config.project),
+  ], callback => {
     runSequence(
-      'gulp:compile',
+      'compile',
       'reload',
       callback
     );
@@ -55,21 +48,12 @@ gulp.task('watch', done => {
   done();
 });
 
-// -- task serve
-
 gulp.task('serve', (callback) => {
   runSequence(
-    'gulp:compile',
-    [
-      'runServer', 'watch'
-    ],
+    'compile',
+    ['runServer', 'watch'],
     callback
   );
 });
 
-// -- task default
-
-gulp.task('default', gulp.series(
-  'clean',
-  'gulp:compile'
-));
+gulp.task('default', gulp.series('clean', 'compile'));

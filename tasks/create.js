@@ -9,36 +9,38 @@
 const gulp = require('gulp');
 const msg = require("gulp-msg");
 const directoryExists = require("directory-exists");
+const cli = require('../helpers/cli');
 
+// ---------------------------------------------------
 // -- Config
+// ---------------------------------------------------
 
 const config = require('../config');
-const cli = require('../config/command');
+
+const nameProject = cli.project && cli.project.length > 0 ? cli.project : '';
+const dirProject = config.paths.projects + nameProject;
+
+// -- Create Project Starter kit
+
+const createStarterProject = dirPath => {
+  return gulp.src(config.paths.start + '**/*')
+    .pipe(gulp.dest(dirPath));
+};
+
+// -- Validation of name project
+
+const validateName = dirName => {
+  let regx = /^[a-z0-9_-]{3,20}$/;
+  let result = regx.test(dirName);
+
+  return result;
+};
 
 // ---------------------------------------------------
 // -- GULP TASKS
 // ---------------------------------------------------
 
 gulp.task('create', done => {
-
-  const nameProject = cli.project && cli.project.length > 0 ? cli.project : '';
-  const dirProject = config.paths.projects + nameProject;
-
-  // -- Create Project Starter kit
-
-  const createStarterProject = dirPath => {
-    return gulp.src(config.paths.start + '**/*')
-      .pipe(gulp.dest(dirPath));
-  };
-
-  // -- Validation of name project
-
-  const validateName = dirName => {
-    let regx = /^[a-z0-9_-]{3,20}$/;
-    let result = regx.test(dirName);
-
-    return result;
-  };
 
   // -- Running of create project
 
@@ -112,5 +114,6 @@ gulp.task('create', done => {
     msg.Info('~', '(c) ' + new Date().getFullYear() + ' gulp project', '~');
   }
 
+	// Signal completion
   done();
 });

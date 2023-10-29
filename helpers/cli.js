@@ -1,11 +1,11 @@
 /**
- * command.js
+ * cli.js
  *
  * The gulp configuration file.
  */
 
 //
-// -- fetch command line arguments
+// -- fetch cli line arguments
 //
 
 module.exports = (argList => {

@@ -12,8 +12,8 @@ Fitur utama meliputi:
 - Can easily develop themes using popular web frameworks like [Bootstrap](https://getbootstrap.com/), [Tailwind CSS](https://tailwindcss.com/).
 - Automatically add headers and project details to JS and CSS files.
 - **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
-- Compile, minify, autoprefix, and lint Sass.
-- Concatenate, minify, and lint JavaScript.
+- Compile, minify, and autoprefix Sass.
+- Concatenate, and minify JavaScript.
 - **Webpack Compiler js** Code splitting, `es/ejs/amd` format, dan js Next-Gen ditangani oleh kompiler **webpack-stream**
 - Watch for file changes, and automatically recompile build and reload webpages.
 
