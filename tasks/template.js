@@ -145,8 +145,8 @@ gulp.task('compile-template', done => {
         if (vendor_js.length == 0) return '';
         return `<script src="${p1}/assets/js/vendor.js${p2.trim()}"></script>`;
       }))
-      .pipe(replace(/\<\/head\>/g, function (math, p1) {
-        return `<script>window.hs_config = ${JSON.stringify(config.project)}</script>
+      .pipe(!config.project.layoutBuilder.config ? noop() : replace(/\<\/head\>/g, function (math, p1) {
+        return `<script>window.config = ${JSON.stringify(config.project)}</script>
           ${!config.project.layoutBuilder.extend.switcherSupport ? `<style>[data-theme-appearance]:not([data-theme-appearance='${config.project.themeAppearance.layoutSkin}']){display:none;}</style>` : ''}</head>`
       }))
       .pipe(gulp.dest(config.paths.template.output(config.project)));
@@ -157,53 +157,53 @@ gulp.task('bundle-vendor-css', done => {
 
   setvendor_css = new Set(vendor_css)
 
-  if ([...setvendor_css].length) {
-    return gulp
-      .src([...setvendor_css])
-      .pipe(cleanCSS({
-        compatibility: 'ie11'
-      }))
-      .pipe(concat('vendor.css'))
-      .pipe(gulp.dest(config.paths.style.output(config.project)));
-  } else {
+  if ([...setvendor_css].length === 0) {
     return new Promise(function (resolve, reject) {
       resolve();
     });
   }
+
+  return gulp
+    .src([...setvendor_css])
+    .pipe(cleanCSS({
+      compatibility: 'ie11'
+    }))
+    .pipe(concat('vendor.css'))
+    .pipe(gulp.dest(config.paths.style.output(config.project)));
 });
 
 gulp.task('bundle-vendor-js', done => {
 
   setvendor_js = new Set(vendor_js)
 
-  if ([...setvendor_js].length) {
-    return gulp
-      .src([...setvendor_js], {
-        allowEmpty: true,
-      })
-      .pipe(concat('vendor.js'))
-      .pipe(uglify())
-      .pipe(gulp.dest(config.paths.script.output(config.project)));
-  } else {
+  if ([...setvendor_js].length === 0) {
     return new Promise(function (resolve, reject) {
       resolve();
     });
   }
+
+  return gulp
+    .src([...setvendor_js], {
+      allowEmpty: true,
+    })
+    .pipe(concat('vendor.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(config.paths.script.output(config.project)));
 });
 
 gulp.task('copySkippedNodeFiles', done => {
 
   SetskippedNodeFiles = new Set(skippedNodeFiles)
 
-  if ([...SetskippedNodeFiles].length) {
-    return gulp
-      .src([...SetskippedNodeFiles])
-      .pipe(gulp.dest(config.paths.vendor(config.project)))
-  } else {
+  if ([...SetskippedNodeFiles].length === 0) {
     return new Promise(function (resolve, reject) {
       resolve();
     });
   }
+
+  return gulp
+    .src([...SetskippedNodeFiles])
+    .pipe(gulp.dest(config.paths.vendor(config.project)))
 });
 
 gulp.task('copySkippedFiles', done => {
