@@ -18,9 +18,24 @@ module.exports = {
   //
 
   layoutBuilder: {
+    config: false,
     extend: {
       switcherSupport: true, // ture, false to add/remove dark mode switcher with dependency files
     },
+  },
+
+  //
+  // Header Template | Append of header in script js or css
+  //
+
+  header: {
+    main: ['/**',
+      ' * <%= package.title %> v<%= package.version %> <%= "("+package.homepage+")" %>',
+      ' * Copyright ' + (new Date()).getFullYear() + ' <%= package.author.name %>',
+      ' * Licensed under <%= package.license %>',
+      ' */',
+      ''
+    ].join('\n')
   },
 
   //

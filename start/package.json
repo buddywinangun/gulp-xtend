@@ -7,11 +7,18 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+	"author": {
+		"name": "YOUR NAME",
+		"url": "http://link-to-your-website.com"
+	},
+	"license": "MIT",
   "repository": {
     "type": "git",
     "url": "http://link-to-your-git-repo.com"
   },
-  "author": "Nama Anda (your@email.com)",
-  "license": "MIT",
-  "homepage": "http://link-to-your-website.com"
+  "homepage": "http://link-to-your-website.com",
+	"gulp-project": {
+		"author": "Buddy Winangun",
+		"repo": "http://github.com/buddywinangun/gulp-project"
+	}
 }

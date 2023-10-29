@@ -29,6 +29,7 @@ gulp.task('gulp:compile', function (callback) {
     'compile-static',
     'compile-style',
     'compile-script',
+    'compile-svgs',
     'bundle-vendor-css',
     'bundle-vendor-js',
     'copySkippedNodeFiles',
