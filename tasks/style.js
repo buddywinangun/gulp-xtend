@@ -30,8 +30,10 @@ const cleanCss = require("gulp-clean-css");
 
 gulp.task('compile-style', done => {
 
+	// Make sure this feature is activated before running
   if (!config.settings.style) return done();
 
+	// Run tasks on all Sass files
   return gulp.src(config.paths.style.input(config.project))
     .pipe(plumber(config.utils.errorHandler))
     .pipe(config.utils.isProd ? noop() : sourcemaps.init())
@@ -42,7 +44,11 @@ gulp.task('compile-style', done => {
       }).on('error', sass.logError)
     )
     .pipe(autoprefixer({
-      cascade: false
+      cascade: true,
+      remove: true
+    }))
+    .pipe(header(config.project.header.main, {
+      package: config.project.data
     }))
     .pipe(!config.utils.isProd ? noop() :
       postcss([
@@ -64,8 +70,5 @@ gulp.task('compile-style', done => {
       })
     )
     .pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
-    .pipe(header(config.header.main, {
-      package: config.project.data
-    }))
     .pipe(gulp.dest(config.paths.style.output(config.project)));
 });

@@ -32,6 +32,7 @@ const webpack = require("webpack");
 
 gulp.task('compile-script', done => {
 
+	// Make sure this feature is activated before running
     if (!config.settings.script) return done();
 
     const dirVersion = config.project.version.output == '' ? '' : config.project.version.output + '/';
@@ -55,10 +56,10 @@ gulp.task('compile-script', done => {
         .pipe(config.utils.isProd ? noop() : sourcemaps.init())
         .pipe(babel())
         .pipe(terser(config.utils.isProd ? config.uglify.prod : config.uglify.dev))
-        .pipe(strip())
-        .pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
-        .pipe(header(config.header.main, {
+        .pipe(header(config.project.header.main, {
             package: config.project.data
         }))
+        .pipe(strip())
+        .pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
         .pipe(gulp.dest(config.paths.script.output(config.project)));
 });
