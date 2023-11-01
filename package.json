@@ -1,17 +1,37 @@
 {
-  "name": "gulp-project",
+  "name": "@buddywinangun/gulp-project",
   "version": "1.0.0",
   "description": "A Starter kit for building web projects with Gulp.js",
+  "license": "MIT",
+  "homepage": "https://github.com/buddywinangun/gulp-project#readme",
   "main": "index.js",
   "scripts": {
+    "install": "node ./install.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+	"author": {
+		"name": "Buddy Winangun",
+    "email": "buddywinangun@gmail.com",
+    "url": "https://github.com/buddywinangun"
+	},
   "keywords": [
     "gulp",
     "nunjucks-templates",
     "browser-sync",
     "projects-build"
   ],
+  "files": [
+    "lib",
+    "tasks",
+    "start",
+    "bin.js",
+    "config.js",
+    "install.js",
+    "gulpfile.js"
+  ],
+  "bin": {
+    "gulp-project": "bin.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/buddywinangun/gulp-project.git"
@@ -20,14 +40,11 @@
     "node": ">= 10.x",
     "npm": ">= 6.0.0"
   },
-  "author": "Buddy Winangun (buddywinangun@gmail.com)",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/buddywinangun/gulp-project/issues",
     "email": "buddywinangun@gmail.com"
   },
-  "homepage": "https://github.com/buddywinangun/gulp-project#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.23.2",
     "@babel/preset-env": "^7.23.2",
     "@rollup/plugin-babel": "^6.0.4",
@@ -36,6 +53,7 @@
     "@rollup/stream": "^3.0.1",
     "autoprefixer": "^10.4.16",
     "browser-sync": "^2.29.3",
+    "cross-spawn": "^7.0.3",
     "cssnano": "^6.0.1",
     "del": "^6.1.1",
     "directory-exists": "^2.0.1",
