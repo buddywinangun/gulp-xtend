@@ -3,25 +3,29 @@
   "name": "project-name",
   "version": "0.1.0",
   "description": "Project description.",
+  "license": "MIT",
+  "homepage": "http://link-to-your-website.com",
   "main": "config.js",
   "scripts": {
+    "start": "gulp-project --task dev",
+    "watch": "gulp-project --task watch",
+    "serve": "gulp-project --task serve",
+    "build": "gulp-project --task build --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-	"author": {
-		"name": "YOUR NAME",
-		"url": "http://link-to-your-website.com"
-	},
-	"license": {
-		"name": "MIT",
-    "url": "https://opensource.org/licenses/MIT"
-	},
+  "author": {
+    "name": "YOUR NAME",
+    "url": "http://link-to-your-website.com"
+  },
   "repository": {
     "type": "git",
     "url": "http://link-to-your-git-repo.com"
   },
-  "homepage": "http://link-to-your-website.com",
-	"gulp-project": {
-		"author": "Buddy Winangun",
-		"repo": "http://github.com/buddywinangun/gulp-project"
-	}
+  "gulp-project": {
+    "author": "Buddy Winangun",
+    "repo": "http://github.com/buddywinangun/gulp-project"
+  },
+  "devDependencies": {
+    "@buddywinangun/gulp-project": "*"
+  }
 }
