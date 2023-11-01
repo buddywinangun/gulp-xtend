@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buddywinangun/gulp-project.git"
+    "url": "https://github.com/buddywinangun/gulp-project.git"
   },
   "engines": {
     "node": ">= 10.x",

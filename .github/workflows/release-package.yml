@@ -1,36 +1,25 @@
-name: Node.js Package
+name: Publish package to GitHub Packages
 
 on:
   release:
-    types: [created]
+    types: [published]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - run: npm ci
-      - run: npm test
-
-  publish-gpr:
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
     steps:
       - uses: actions/checkout@v4
+      # Setup .npmrc file to publish to GitHub Packages
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+          # Defaults to the user or organization that owns the workflow file
+          scope: '@buddywinangun'
       - run: npm ci
-      - run: |
-          echo "@buddywinangun:registry=https://npm.pkg.github.com" >> .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.TOKEN }}" >> .npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.TOKEN}}
