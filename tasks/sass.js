@@ -24,7 +24,7 @@ const postcss = require("gulp-postcss");
 const autoprefixer = require("autoprefixer");
 const cssnano = require("cssnano");
 const cleancss = require("gulp-clean-css");
-const trim = require('../helpers/trim');
+const trim = require('../lib/trim');
 
 // ---------------------------------------------------
 // -- Config
@@ -32,14 +32,14 @@ const trim = require('../helpers/trim');
 
 const config = require('../config');
 
-const opts = config.paths.sass(config.project);
+const opts = config.paths.version(config.project, path);
 
 const sassOpts = {
   compile: {
-    src: path.join(process.cwd(), opts.src, '*.scss'),
-    dest: path.join(process.cwd(), opts.build),
+    src: path.join(opts.src, 'sass/*.scss'),
+    dest: path.join(opts.build, 'assets/css'),
     banner: {
-      text: path.join(process.cwd(), config.project.banner),
+      text: config.project.banner,
       data: config.project
     }
   }

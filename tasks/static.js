@@ -7,6 +7,7 @@
 // -- General
 
 const gulp = require('gulp');
+const path = require('path');
 
 // ---------------------------------------------------
 // -- Config
@@ -14,12 +15,12 @@ const gulp = require('gulp');
 
 const config = require('../config');
 
-const opts = config.paths.static(config.project);
+const opts = config.paths.version(config.project, path);
 
 const staticOpts = {
   compile: {
-    src: path.join(process.cwd(), opts.src),
-    dest: path.join(process.cwd(), opts.build)
+    src: path.join(opts.src, 'static/**/*'),
+    dest: path.join(opts.build, 'assets')
   }
 };
 

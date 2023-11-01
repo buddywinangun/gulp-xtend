@@ -7,8 +7,9 @@
 // -- General
 
 const gulp = require('gulp');
+const path = require('path');
 const browserSync = require("browser-sync").create();
-const cli = require('../helpers/cli');
+const cli = require('../lib/cli');
 
 // ---------------------------------------------------
 // -- Config
@@ -28,7 +29,7 @@ gulp.task('runServer', (done) => {
 	// Initialize BrowserSync
   browserSync.init({
     server: {
-      baseDir: [config.paths.build(config.project)]
+      baseDir: [config.paths.version(config.project, path).build]
     },
     port: cli.port ? Number(cli.port) : 9000,
     open: true

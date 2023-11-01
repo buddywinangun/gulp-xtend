@@ -7,6 +7,7 @@
 // -- General
 
 const gulp = require('gulp');
+const path = require('path');
 const del = require("del");
 const cache = require("gulp-cached");
 
@@ -27,7 +28,7 @@ gulp.task('clean', done => {
   if (!config.settings.clean) return done();
 
 	// Clean the dist folder
-  del.sync([config.paths.build(config.project)], {
+  del.sync([config.paths.version(config.project, path).build], {
     force: true
   });
 

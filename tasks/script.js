@@ -16,14 +16,18 @@ const header = require("gulp-header");
 const glob = require('glob');
 const stripIndent = require('strip-indent');
 const fs = require("fs");
-const trim = require('../helpers/trim');
+const trim = require('../lib/trim');
 const merge = require('merge-stream');
 
 // -- Js Blundle
 
 const rollupStream = require('@rollup/stream');
-const {babel} = require('@rollup/plugin-babel');
-const {nodeResolve} = require('@rollup/plugin-node-resolve');
+const {
+	babel
+} = require('@rollup/plugin-babel');
+const {
+	nodeResolve
+} = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const globImport = require('rollup-plugin-glob-import');
 const globals = require('rollup-plugin-node-globals');
@@ -37,14 +41,20 @@ const buffer = require('vinyl-buffer');
 
 const config = require('../config');
 
-const opts = config.paths.script(config.project);
+const opts = config.paths.version(config.project, path);
 
 const jsOpts = {
 	compile: {
-		src: path.join(process.cwd(), opts.src.dir, opts.src.filename),
-		dest: path.join(process.cwd(), opts.build.dir),
+		src: {
+			dir: path.join(opts.src, 'js/index.js'),
+			filename: 'index.js',
+		},
+		dest: {
+			dir: path.join(opts.build, 'assets/js'),
+			filename: 'script.js',
+		},
 		banner: {
-      text: path.join(process.cwd(), config.project.banner),
+			text: config.project.banner,
 			data: config.project
 		}
 	}
@@ -60,16 +70,16 @@ gulp.task('script-compile', (done) => {
 	if (!config.settings.script) return done();
 
 	// index.ext
-	let srcExt = path.extname(opts.src.filename); // .ext
-	let srcName = path.basename(opts.src.filename, srcExt); // index
+	let srcExt = path.extname(jsOpts.compile.src.filename); // .ext
+	let srcName = path.basename(jsOpts.compile.src.filename, srcExt); // index
 	// script.ext
-	let buildExt = path.extname(opts.build.filename); // .ext
-	let buildName = path.basename(opts.build.filename, buildExt); // script
+	let buildExt = path.extname(jsOpts.compile.dest.filename); // .ext
+	let buildName = path.basename(jsOpts.compile.dest.filename, buildExt); // script
 
-	const variant = path.join(process.cwd(), opts.src.dir, srcName + '-*' + srcExt);
+	const variant = path.join(jsOpts.compile.src.dir, srcName + '-*' + srcExt);
 
 	const files = [
-		jsOpts.compile.src,
+		jsOpts.compile.src.dir,
 		...glob.sync(variant)
 	];
 
@@ -136,7 +146,7 @@ gulp.task('script-compile', (done) => {
 				loadMaps: true
 			}))
 			.pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
-			.pipe(gulp.dest(jsOpts.compile.dest, {
+			.pipe(gulp.dest(jsOpts.compile.dest.dir, {
 				overwrite: true
 			}));
 	});

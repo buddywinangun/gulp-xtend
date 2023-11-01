@@ -8,6 +8,7 @@
 
 const gulp = require('gulp');
 const svgmin = require('gulp-svgmin');
+const path = require('path');
 
 // ---------------------------------------------------
 // -- Config
@@ -15,12 +16,12 @@ const svgmin = require('gulp-svgmin');
 
 const config = require('../config');
 
-const opts = config.paths.svgs(config.project);
+const opts = config.paths.version(config.project, path);
 
 const svgOpts = {
   compile: {
-    src: path.join(process.cwd(), opts.src),
-    dest: path.join(process.cwd(), opts.build)
+    src: path.join(opts.src, 'svg/**/*.svg'),
+    dest: path.join(opts.build, 'assets/svg')
   }
 };
 

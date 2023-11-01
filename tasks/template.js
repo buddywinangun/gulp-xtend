@@ -13,11 +13,11 @@ const replace = require('gulp-replace');
 const noop = require("gulp-noop");
 const path = require('path');
 const rename = require("gulp-rename");
-const trim = require('../helpers/trim');
+const trim = require('../lib/trim');
 
 // -- Compile
 
-const templateCompile = require('../helpers/template');
+const templateCompile = require('../lib/template');
 const beautify = require("gulp-jsbeautifier");
 
 // ---------------------------------------------------
@@ -26,16 +26,16 @@ const beautify = require("gulp-jsbeautifier");
 
 const config = require('../config');
 
-const opts = config.paths.template(config.project);
+const opts = config.paths.version(config.project, path);
 
 const templateOpts = {
   compile: {
     src: [
-      path.join(process.cwd(), opts.src, '**/*.html'),
-      '!' + path.join(process.cwd(), opts.src, 'template/**/*.html'),
-      '!' + path.join(process.cwd(), opts.src, '**/_*.html')
+      path.join(opts.src, '**/*.html'),
+      '!' + path.join(opts.src, 'template/**/*.html'),
+      '!' + path.join(opts.src, '**/_*.html')
     ],
-    dest: path.join(process.cwd(), opts.build),
+    dest: opts.build,
     opts: {
       context: config.project,
     }
@@ -126,14 +126,14 @@ gulp.task('template-node', () => {
           }
         }
 
-        return match.replace('node_modules', 'assets/vendor'.replace(config.paths.build(config.project) + '/', ''))
+        return match.replace('node_modules', 'assets/vendor'.replace(templateOpts.compile.dest + '/', ''))
       }
 
       // Local Vendor
       else {
         if (config.project.skipFilesFromBundle.indexOf(path) < 0) {
           path = path.replace('assets/vendor', 'vendor')
-          let splite = '../' + config.paths.watch(config.project) + path;
+          let splite = '../' + templateOpts.compile.dest + path;
           if (p4 === "css") {
             if (vendor_css.includes(splite) == false) {
               vendor_css.push(splite)
@@ -148,7 +148,7 @@ gulp.task('template-node', () => {
         } else {
           splitedPath = path.split('/')
 
-          let splite = '../' + config.paths.build(config.project) + '*' + splitedPath[0] + '/' + splitedPath[1] + '/' + splitedPath[2] + '/**';
+          let splite = '../' + templateOpts.compile.dest + '*' + splitedPath[0] + '/' + splitedPath[1] + '/' + splitedPath[2] + '/**';
           if (skippedFiles.includes(splite) == false) {
             skippedFiles.push(splite)
           }
@@ -171,7 +171,7 @@ gulp.task('template-node', () => {
     //       skippedNodeFiles.push(splite)
     //     }
 
-    //     return match.replace('node_modules', 'assets/vendor'.replace(config.paths.build(config.project) + '/', ''))
+    //     return match.replace('node_modules', 'assets/vendor'.replace(templateOpts.compile.dest + '/', ''))
     //   }
 
     //   return match
@@ -209,7 +209,7 @@ gulp.task('template-bundle-vendor-css', () => {
       compatibility: 'ie11'
     }))
     .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(config.paths.style.output(config.project)));
+    .pipe(gulp.dest(path.join(opts.build, 'assets/css')));
 });
 
 gulp.task('template-bundle-vendor-js', () => {
@@ -228,7 +228,7 @@ gulp.task('template-bundle-vendor-js', () => {
     })
     .pipe(concat('vendor.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(config.paths.script.output(config.project)));
+    .pipe(gulp.dest(path.join(opts.build, 'assets/js')));
 });
 
 gulp.task('template-copy-skipped-node-files', () => {
@@ -243,7 +243,7 @@ gulp.task('template-copy-skipped-node-files', () => {
 
   return gulp
     .src([...SetskippedNodeFiles])
-    .pipe(gulp.dest(config.paths.vendor(config.project)))
+    .pipe(gulp.dest(templateOpts.compile.dest))
 });
 
 gulp.task('template-copy-skipped-files', () => {
@@ -253,7 +253,7 @@ gulp.task('template-copy-skipped-files', () => {
   if ([...SetskippedFiles].length) {
     return gulp
       .src([...SetskippedFiles])
-      .pipe(gulp.dest(config.paths.build(config.project)))
+      .pipe(gulp.dest(templateOpts.compile.dest))
   } else {
     return new Promise(function (resolve, reject) {
       resolve();
@@ -271,7 +271,7 @@ gulp.task('template-copy-dependencies', () => {
     }
 
     gulp.src(path)
-      .pipe(gulp.dest(config.paths.build(config.project) + config.project.copyDependencies[k]))
+      .pipe(gulp.dest(templateOpts.compile.dest + config.project.copyDependencies[k]))
   }
 
   return new Promise(function (resolve, reject) {
