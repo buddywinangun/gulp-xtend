@@ -1,12 +1,12 @@
 {
   "name": "@buddywinangun/gulp-project",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A Starter kit for building web projects with Gulp.js",
   "license": "MIT",
   "homepage": "https://github.com/buddywinangun/gulp-project#readme",
   "main": "index.js",
   "scripts": {
-    "install": "node ./install.js",
+    "postinstall": "node postinstall-script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 	"author": {
@@ -26,7 +26,7 @@
     "start",
     "bin.js",
     "config.js",
-    "install.js",
+    "postinstall-script.js",
     "gulpfile.js"
   ],
   "bin": {
@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/buddywinangun/gulp-project.git"
+    "url": "https://github.com/buddywinangun/gulp-project.git"
   },
   "engines": {
     "node": ">= 10.x",
