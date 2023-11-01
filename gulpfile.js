@@ -7,6 +7,7 @@
 // -- General
 
 const gulp = require('gulp');
+const path = require('path');
 const runSequence = require("gulp4-run-sequence");
 
 // -- Config
@@ -36,7 +37,7 @@ gulp.task('compile', (callback) => {
 
 gulp.task('watch', done => {
   gulp.watch([
-    config.paths.watch(config.project),
+    config.paths.version(config.project, path).src,
   ], callback => {
     runSequence(
       'compile',
