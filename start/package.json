@@ -20,12 +20,5 @@
   "repository": {
     "type": "git",
     "url": "http://link-to-your-git-repo.com"
-  },
-  "gulp-xtend": {
-    "author": "Buddy Winangun",
-    "repo": "http://github.com/buddywinangun/gulp-xtend"
-  },
-  "devDependencies": {
-    "@buddywinangun/gulp-xtend": "*"
   }
 }
