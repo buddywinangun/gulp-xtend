@@ -9,7 +9,7 @@ const program = new commander.Command();
 
 program
   .storeOptionsAsProperties(true)
-  .name('gulp-project')
+  .name('gulp-xtend')
   .usage('[options]')
   .option('--production', 'set mode: "production" (minification)', 'production')
   .option('--gulpfile <gulpfile>', 'custom gulpfile')
@@ -19,7 +19,7 @@ program
   .parse(process.argv);
 
 const opts = [];
-const gulpfile = program.gulpfile ? program.gulpfile : 'node_modules/@buddywinangun/gulp-project/gulpfile.js';
+const gulpfile = program.gulpfile ? program.gulpfile : 'node_modules/@buddywinangun/gulp-xtend/gulpfile.js';
 const cwd = program.cwd ? program.cwd : process.cwd();
 
 if (program.production) opts.push('--production');

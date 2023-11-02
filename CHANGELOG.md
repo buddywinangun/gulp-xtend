@@ -11,9 +11,9 @@ Semua perubahan penting pada proyek ini akan didokumentasikan dalam file ini.
 | [3.x][] | **Current**     | 2023-11-01      | TBD              | TBD                   | TBD         |
 | 4.x     | **Pending**     | TBD             | TBD              | TBD                   | TBD         |
 
-[1.x]: https://github.com/buddywinangun/gulp-project/tree/1.0.0
-[2.x]: https://github.com/buddywinangun/gulp-project/tree/2.0.0
-[3.x]: https://github.com/buddywinangun/gulp-project/tree/3.0.0
+[1.x]: https://github.com/buddywinangun/gulp-xtend/tree/1.0.0
+[2.x]: https://github.com/buddywinangun/gulp-xtend/tree/2.0.0
+[3.x]: https://github.com/buddywinangun/gulp-xtend/tree/3.0.0
 
 ## Release Phases
 
@@ -30,6 +30,6 @@ Rilis baru dibuat dari branch `master` ke versi mayor *Active*. Lihat [Releases 
 Format didasarkan pada [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 dan menggunakan [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/buddywinangun/gulp-project/compare/3.0.0...HEAD)
+## [Unreleased](https://github.com/buddywinangun/gulp-xtend/compare/3.0.0...HEAD)
 
-## [Release Changelog](https://github.com/buddywinangun/gulp-project/releases)
+## [Release Changelog](https://github.com/buddywinangun/gulp-xtend/releases)
