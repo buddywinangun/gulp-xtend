@@ -1,12 +1,11 @@
-## About Gulp Project
+## About Gulp Xtend
 
-**Gulp Project** adalah alat yang kami rancang sebagai prototipe template HTML5 multi-project yang bertujuan untuk memudahkan pengembang front-end dalam membangun antarmuka pengguna yang dituangkan dalam bentuk visual web dari desain yang telah ditentukan dengan arsitektur yang baik menggunakan [gulp.js](https://gulpjs.com/) dan fleksibilitas JavaScript.
+**Gulp Xtend** adalah alat yang kami rancang sebagai prototipe template HTML5 multi-project yang bertujuan untuk memudahkan pengembang front-end dalam membangun antarmuka pengguna yang dituangkan dalam bentuk visual web dari desain yang telah ditentukan dengan arsitektur yang baik menggunakan [gulp.js](https://gulpjs.com/) dan fleksibilitas JavaScript.
 
 ## Features
 
 Fitur utama meliputi:
 
-- Create Project
 - Optimize SVGs.
 - Copy static files and folders into your `dist` directory.
 - Can easily develop themes using popular web frameworks like [Bootstrap](https://getbootstrap.com/), [Tailwind CSS](https://tailwindcss.com/).
@@ -48,7 +47,7 @@ mkdir my_directory; cd my_directory
 
 2. Install dependencies
 ```bash
-npm install @buddywinangun/gulp-project
+npm install @buddywinangun/gulp-xtend
 ```
 
 ## Contributing
@@ -57,4 +56,4 @@ Panduan kontribusi dapat ditemukan di [CONTRIBUTING](.github/CONTRIBUTING.md).
 
 ## License
 
-Gulp Project dilisensikan di bawah [MIT license](/LICENSE.md).
+Gulp Xtend dilisensikan di bawah [MIT license](/LICENSE.md).

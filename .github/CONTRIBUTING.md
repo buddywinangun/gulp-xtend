@@ -18,13 +18,13 @@ To begin, please fork the project, clone your fork, configure the remotes, and i
 # 1. Fork the project
 
 # 2. Clone your fork of the repo into the current directory
-git clone https://github.com/<your-username>/gulp-project.git
+git clone https://github.com/<your-username>/gulp-xtend.git
 
 # 3. Navigate to the newly cloned directory
-$ cd gulp-project
+$ cd gulp-xtend
 
 # 4. Assign the original repo to a remote called "upstream"
-$ git remote add upstream https://github.com/buddywinangun/gulp-project.git
+$ git remote add upstream https://github.com/buddywinangun/gulp-xtend.git
 
 # 5. Install dependencies
 npm install

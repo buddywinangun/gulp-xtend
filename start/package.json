@@ -7,10 +7,10 @@
   "homepage": "http://link-to-your-website.com",
   "main": "config.js",
   "scripts": {
-    "start": "gulp-project --task dev",
-    "watch": "gulp-project --task watch",
-    "serve": "gulp-project --task serve",
-    "build": "gulp-project --task build --production",
+    "start": "gulp-xtend --task dev",
+    "watch": "gulp-xtend --task watch",
+    "serve": "gulp-xtend --task serve",
+    "build": "gulp-xtend --task build --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -21,11 +21,11 @@
     "type": "git",
     "url": "http://link-to-your-git-repo.com"
   },
-  "gulp-project": {
+  "gulp-xtend": {
     "author": "Buddy Winangun",
-    "repo": "http://github.com/buddywinangun/gulp-project"
+    "repo": "http://github.com/buddywinangun/gulp-xtend"
   },
   "devDependencies": {
-    "@buddywinangun/gulp-project": "*"
+    "@buddywinangun/gulp-xtend": "*"
   }
 }

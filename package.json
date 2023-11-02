@@ -1,9 +1,9 @@
 {
-  "name": "@buddywinangun/gulp-project",
+  "name": "@buddywinangun/gulp-xtend",
   "version": "3.0.1",
   "description": "A Starter kit for building web projects with Gulp.js",
   "license": "MIT",
-  "homepage": "https://github.com/buddywinangun/gulp-project#readme",
+  "homepage": "https://github.com/buddywinangun/gulp-xtend#readme",
   "main": "index.js",
   "scripts": {
     "postinstall": "node postinstall-script.js",
@@ -30,18 +30,18 @@
     "gulpfile.js"
   ],
   "bin": {
-    "gulp-project": "bin.js"
+    "gulp-xtend": "bin.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/buddywinangun/gulp-project.git"
+    "url": "https://github.com/buddywinangun/gulp-xtend.git"
   },
   "engines": {
     "node": ">= 10.x",
     "npm": ">= 6.0.0"
   },
   "bugs": {
-    "url": "https://github.com/buddywinangun/gulp-project/issues",
+    "url": "https://github.com/buddywinangun/gulp-xtend/issues",
     "email": "buddywinangun@gmail.com"
   },
   "dependencies": {
