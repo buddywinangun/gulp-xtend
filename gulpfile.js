@@ -30,6 +30,7 @@ gulp.task('compile', (callback) => {
     'sass-tasks',
     'svgs-tasks',
     'script-tasks',
+    'static-tasks',
     'template-tasks',
     callback
   );

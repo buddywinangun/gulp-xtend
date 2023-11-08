@@ -1,23 +1,29 @@
-name: ✨Feature Request
-description: Minta fitur atau penyempurnaan fitur baru
-labels: ["peningkatan"]
-title: "[FEAT]: "
+name: Feature request
+description: Suggest new or updated features to include in gulp-xtend.
+title: "Suggest a new feature"
+labels: [feature]
+assignees: []
 body:
-  - type: markdown
+  - type: checkboxes
     attributes:
-      value: |
-        Harap pastikan permintaan fitur ini belum dikirimkan oleh seseorang dengan melihat issues terbuka/tertutup lainnya
-
+      label: Prerequisites
+      description: Take a couple minutes to help our maintainers work faster.
+      options:
+        - label: I have [searched](https://github.com/buddywinangun/gulp-xtend/issues) for duplicate or closed feature requests
+          required: true
+        - label: I have read the [contributing guidelines](https://github.com/buddywinangun/gulp-xtend/blob/main/.github/CONTRIBUTING.md)
+          required: true
   - type: textarea
-    id: description
+    id: proposal
     attributes:
-      label: Keterangan
-      description: Beri kami penjelasan singkat tentang fitur atau peningkatan yang anda inginkan
+      label: Proposal
+      description: Provide detailed information for what we should add, including relevant links to prior art, screenshots, or live demos whenever possible.
     validations:
       required: true
-
   - type: textarea
-    id: additional-information
+    id: motivation
     attributes:
-      label: informasi tambahan
-      description: Beri kami beberapa informasi tambahan tentang permintaan fitur seperti solusi yang diusulkan, tautan, screenshots, dll.
+      label: Motivation and context
+      description: Tell us why this change is needed or helpful, and what problems it may help solve.
+    validations:
+      required: true

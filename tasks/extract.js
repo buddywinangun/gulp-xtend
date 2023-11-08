@@ -44,7 +44,7 @@ gulp.task('extract-node', () => {
         new RegExp(config.utils.deleteLine, 'i')
       ]
     }))
-    .pipe(replace(new RegExp('(.*?)(\\.+\\/)+' + `(assets/vendor|node_modules)` + '\/.*\\.(js|css)', 'g'), function (match, p1, p2, p3, p4) {
+    .pipe(replace(new RegExp('(.*?)(\\.+\\/)+' + `(${config.project.paths.assets}vendor|node_modules)` + '\/.*\\.(js|css)', 'g'), function (match, p1, p2, p3, p4) {
       if (p1.search(/(&gt|&lt|<!--|\/\/)/g) >= 0) return match;
 
       path = match.replace(/(\.+\/)+/, '').replace(p1, '')
@@ -73,13 +73,13 @@ gulp.task('extract-node', () => {
           }
         }
 
-        return match.replace('node_modules', 'assets/vendor'.replace(extractOpts.compile.dest + '/', ''))
+        return match.replace('node_modules', config.project.paths.assets+'vendor'.replace(extractOpts.compile.dest + '/', ''))
       }
 
       // Local Vendor
       else {
         if (config.project.skipFilesFromBundle.indexOf(path) < 0) {
-          path = path.replace('assets/vendor', 'vendor')
+          path = path.replace(config.project.paths.assets+'vendor', 'vendor')
           let splite = '../' + extractOpts.compile.dest + path;
           if (p4 === "css") {
             if (vendor_css.includes(splite) == false) {
@@ -118,18 +118,18 @@ gulp.task('extract-node', () => {
     //       skippedNodeFiles.push(splite)
     //     }
 
-    //     return match.replace('node_modules', 'assets/vendor'.replace(extractOpts.compile.dest + '/', ''))
+    //     return match.replace('node_modules', config.project.paths.assets+'vendor'.replace(extractOpts.compile.dest + '/', ''))
     //   }
 
     //   return match
     // }))
     .pipe(replace(/<!-- bundlecss:vendor \[(.*?)\](.*)-->/g, function (math, p1, p2) {
       if (vendor_css.length == 0) return '';
-      return `<link rel="stylesheet" href="${p1}/assets/css/vendor.css${p2.trim()}">`;
+      return `<link rel="stylesheet" href="${p1}/${config.project.paths.assets}css/vendor.css${p2.trim()}">`;
     }))
     .pipe(replace(/<!-- bundlejs:vendor \[(.*?)\](.*)-->/g, function (math, p1, p2) {
       if (vendor_js.length == 0) return '';
-      return `<script src="${p1}/assets/js/vendor.js${p2.trim()}"></script>`;
+      return `<script src="${p1}/${config.project.paths.assets}js/vendor.js${p2.trim()}"></script>`;
     }))
     .pipe(!config.project.layoutBuilder.config ? noop() : replace(/\<\/head\>/g, function (math, p1) {
       return `<script>window.config = ${JSON.stringify(config.project)}</script>
@@ -156,7 +156,7 @@ gulp.task('extract-vendor-css', () => {
       compatibility: 'ie11'
     }))
     .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(path.join(opts.build, 'assets/css')));
+    .pipe(gulp.dest(path.join(opts.build, config.project.paths.assets, 'css')));
 });
 
 gulp.task('extract-vendor-js', () => {
@@ -175,7 +175,7 @@ gulp.task('extract-vendor-js', () => {
     })
     .pipe(concat('vendor.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(path.join(opts.build, 'assets/js')));
+    .pipe(gulp.dest(path.join(opts.build, config.project.paths.assets, 'js')));
 });
 
 gulp.task('extract-node-files', () => {

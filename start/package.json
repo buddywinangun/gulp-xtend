@@ -5,12 +5,12 @@
   "description": "Project description.",
   "license": "MIT",
   "homepage": "http://link-to-your-website.com",
-  "main": "config.js",
+  "main": "index.js",
   "scripts": {
-    "start": "gulp-xtend --task dev",
+    "start": "gulp-xtend",
     "watch": "gulp-xtend --task watch",
     "serve": "gulp-xtend --task serve",
-    "build": "gulp-xtend --task build --production",
+    "build": "gulp-xtend --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -20,12 +20,5 @@
   "repository": {
     "type": "git",
     "url": "http://link-to-your-git-repo.com"
-  },
-  "gulp-xtend": {
-    "author": "Buddy Winangun",
-    "repo": "http://github.com/buddywinangun/gulp-xtend"
-  },
-  "devDependencies": {
-    "@buddywinangun/gulp-xtend": "*"
   }
 }

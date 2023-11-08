@@ -53,7 +53,7 @@ gulp.task('template-compile', done => {
   let buildExt = '.html'; // .ext
 
   if (config.project.templating == 'nunjucks') {
-    return gulp.src(templateOpts.compile.src, {
+    gulp.src(templateOpts.compile.src, {
         allowEmpty: true
       })
       .pipe(plumber(config.utils.errorHandler))
@@ -77,8 +77,8 @@ gulp.task('template-compile', done => {
       }));
   }
 
-	// Signal completion
-	done();
+  // Signal completion
+  done();
 });
 
 gulp.task('template-tasks', gulp.series(

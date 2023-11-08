@@ -19,4 +19,4 @@ You may need to run specific command, please see our [package.json](./package.js
 
 ## License
 
-Gulp Xtend dilisensikan di bawah [MIT license](/LICENSE.md).
+[MIT license](/LICENSE.md).

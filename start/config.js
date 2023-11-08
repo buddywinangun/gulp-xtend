@@ -67,5 +67,15 @@ module.exports = {
   version: {
     input: "",
     output: "",
+  },
+
+  //
+  // Validate Path
+  //
+
+  paths: {
+    build: 'dist/',
+    source: 'src/',
+    assets: 'assets/',
   }
 };

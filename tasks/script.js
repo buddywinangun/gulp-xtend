@@ -46,11 +46,11 @@ const opts = config.paths.version(config.project, path);
 const jsOpts = {
 	compile: {
 		src: {
-			dir: path.join(opts.src, 'js/index.js'),
+			dir: path.join(opts.src, 'js', 'index.js'),
 			filename: 'index.js',
 		},
 		dest: {
-			dir: path.join(opts.build, 'assets/js'),
+			dir: path.join(opts.build, config.project.paths.assets, 'js'),
 			filename: 'script.js',
 		},
 		banner: {

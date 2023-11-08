@@ -8,14 +8,11 @@
 
   {% include "../partials/head.html" %}
 
-  {% block vendorCSS %}
-  <!-- Vendor CSS -->
-  <!-- bundlecss:vendor [@@autopath] {{"?v="+data.version}} -->
-  {%- endblock -%}
-
   {% block styles %}
   <!-- CSS -->
-  <link rel="stylesheet" href="@@autopath/assets/css/style.css{{"?v="+data.version}}">
+  <link rel="stylesheet" href="@@autopath/css/style.css{{"?v="+data.version}}">
+  <!-- Vendor CSS -->
+  <!-- bundlecss:vendor [@@autopath] {{"?v="+data.version}} -->
   {%- endblock -%}
 
   {% block head %}
@@ -28,14 +25,11 @@
   <!-- Content -->
   {%- endblock -%}
 
-  {% block vendorJS %}
-  <!-- Vendor JS -->
-  <!-- bundlejs:vendor [@@autopath] {{"?v="+data.version}} -->
-  {% endblock -%}
-
   {%- block scripts -%}
   <!-- JS -->
-  <script src="@@autopath/assets/js/script.js{{"?v="+data.version}}" defer></script>
+  <script src="@@autopath/js/script.js{{"?v="+data.version}}" defer></script>
+  <!-- Vendor JS -->
+  <!-- bundlejs:vendor [@@autopath] {{"?v="+data.version}} -->
   {%- endblock -%}
 </body>
 

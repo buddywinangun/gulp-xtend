@@ -20,8 +20,8 @@ const opts = config.paths.version(config.project, path);
 
 const svgOpts = {
   compile: {
-    src: path.join(opts.src, 'svg/**/*.svg'),
-    dest: path.join(opts.build, 'assets/svg')
+    src: path.join(opts.src, 'svg', '**/*.svg'),
+    dest: path.join(opts.build, config.project.paths.assets, 'svg')
   }
 };
 
