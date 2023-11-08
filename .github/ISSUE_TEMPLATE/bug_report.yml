@@ -1,27 +1,31 @@
-name: 🐛Bug Report
-description: Ajukan laporan bug di sini
-title: "[BUG]: "
+name: Report a bug
+description: Tell us about a bug or issue you may have identified in gulp-xtend.
+title: "Provide a general summary of the issue"
 labels: ["bug"]
-assignees: ["buddywinangun"]
+assignees: "-"
 body:
-  - type: markdown
+  - type: checkboxes
     attributes:
-      value: |
-        Terima kasih telah meluangkan waktu untuk mengisi laporan bug ini 🤗
-        Pastikan tidak ada issues terbuka/tertutup untuk topik ini 😃
-
+      label: Prerequisites
+      description: Take a couple minutes to help our maintainers work faster.
+      options:
+        - label: I have [searched](https://github.com/buddywinangun/gulp-xtend/issues?utf8=%E2%9C%93&q=is%3Aissue) for duplicate or closed issues
+          required: true
+        - label: I have [validated](https://html5.validator.nu/) any HTML to avoid common problems
+          required: true
+        - label: I have read the [contributing guidelines](https://github.com/buddywinangun/gulp-xtend/blob/main/.github/CONTRIBUTING.md)
+          required: true
   - type: textarea
-    id: bug-description
+    id: what-happened
     attributes:
-      label: Keterangan bug
-      description: Beri kami gambaran singkat tentang apa yang terjadi dan apa yang seharusnya terjadi
+      label: Describe the issue
+      description: Provide a summary of the issue and what you expected to happen, including specific steps to reproduce.
     validations:
       required: true
-
   - type: textarea
-    id: steps-to-reproduce
+    id: reduced-test-case
     attributes:
-      label: Langkah-langkah
+      label: Reduced test cases
       description: Langkah-langkah untuk melihat issue terkait topik ini.
       placeholder: |
         1. Go to '...'
@@ -30,19 +34,37 @@ body:
         4. See error
     validations:
       required: true
-
   - type: dropdown
-    id: versions
+    id: browser
     attributes:
-      label: Versi mana yang anda gunakan?
-      description: Jika issue ini terjadi pada lebih dari 1 versi, pilih versi yang sesuai.
+      label: What browser(s) are you seeing the problem on?
       multiple: true
       options:
-        - 1.0.0
-        - 2.0.0
+        - Chrome
+        - Safari
+        - Firefox
+        - Microsoft Edge
+        - Opera
+  - type: dropdown
+    id: os
+    attributes:
+      label: What operating system(s) are you seeing the problem on?
+      multiple: true
+      options:
+        - Windows
+        - macOS
+        - Android
+        - iOS
+        - Linux
     validations:
       required: true
-
+  - type: input
+    id: version
+    attributes:
+      label: What version of Bootstrap are you using?
+      placeholder: "e.g., v5.1.0 or v4.5.2"
+    validations:
+      required: true
   - type: textarea
     id: additional-information
     attributes:

@@ -1,4 +1,21 @@
-# Bugs, Questions, and Feature Requests
+# Contributing to Gulp Xtend
+
+Looking to contribute something to Gulp Xtend? **Here's how you can help.**
+
+Please take a moment to review this document in order to make the contribution
+process easy and effective for everyone involved.
+
+Following these guidelines helps to communicate that you respect the time of
+the developers managing and developing this open source project. In return,
+they should reciprocate that respect in addressing your issue or assessing
+patches and features.
+
+## Code guidelines
+## Using the issue tracker
+## Issues assignment
+## Issues and labels
+## Bug reports
+## Feature requests
 
 Laporan bug, pertanyaan, dan permintaan fitur gunakan [GitHub Issues](/issues).
 
@@ -10,29 +27,22 @@ Laporan bug, pertanyaan, dan permintaan fitur gunakan [GitHub Issues](/issues).
 2. Sertakan file minimum yang diperlukan untuk menunjukkan bug.
 3. Browser dan OS yang anda gunakan.
 
-## Get started
+## Pull requests
 
 To begin, please fork the project, clone your fork, configure the remotes, and install dependencies:
 
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the project, clone your fork, and configure the remotes:
+
 ```bash
-# 1. Fork the project
-
-# 2. Clone your fork of the repo into the current directory
+# Clone your fork of the repo into the current directory
 git clone https://github.com/<your-username>/gulp-xtend.git
-
-# 3. Navigate to the newly cloned directory
-$ cd gulp-xtend
-
-# 4. Assign the original repo to a remote called "upstream"
-$ git remote add upstream https://github.com/buddywinangun/gulp-xtend.git
-
-# 5. Install dependencies
+# Navigate to the newly cloned directory
+cd gulp-xtend
+# Assign the original repo to a remote called "upstream"
+git remote add upstream https://github.com/buddywinangun/gulp-xtend.git
+# Install dependencies
 npm install
 ```
-
-## Pull requests
-
-1. Read [get started](#get-started) above.
 
 2. If you cloned a while ago, get the latest changes from upstream:
 ```bash
@@ -52,4 +62,8 @@ git checkout -b <topic-branch-name>
 git push origin <topic-branch-name>
 ```
 
-7. Open a Pull Request with a clear title and description against the `main` branch.
+6. [Open a Pull Request](https://help.github.com/articles/about-pull-requests/) with a clear title and description against the `main` branch.
+
+## License
+
+By contributing your code, you agree to license your contribution under the [MIT License](../LICENSE).

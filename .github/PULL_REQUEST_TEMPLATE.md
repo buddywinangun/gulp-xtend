@@ -1,26 +1,42 @@
 <!--
 Terima kasih telah membuat PR ini 🤗
-
-Harap pastikan bahwa PR dibatasi pada satu jenis (dokumen, fitur, dll.) dan usahakan sekecil mungkin. Lebih baik anda membuka banyak PR dan sederhana daripada membuka PR yang rumit.
+Harap pastikan bahwa PR dibatasi pada satu jenis (dokumen, fitur, dll.) dan usahakan sekecil mungkin. Lebih baik anda membuka banyak PR dan sederhana daripada PR yang rumit.
 -->
 
+### Description
+
+<!-- Describe your changes in detail -->
+
+### Motivation & Context
+
+<!-- Why is this change required? What problem does it solve? -->
+
+### Type of changes
+
+<!-- What types of changes does your code introduce? Put an `x` in all the boxes that apply. -->
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Refactoring (non-breaking change)
+- [ ] Breaking change (fix or feature that would change existing functionality)
+
+### Checklist
+
+<!-- Go over all the following points, and put an `x` in all the boxes that apply. -->
+<!-- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
+
+- [ ] I have read the [contributing guidelines](.github/CONTRIBUTING.md)
+- [ ] My change introduces changes to the documentation
+- [ ] I have updated the documentation accordingly
+- [ ] I have added tests to cover my changes
+- [ ] All new and existing tests passed
+
+#### Live previews
+
+<!-- Please add direct links where your modifications can be seen in the documentation -->
+
+### Related issues
+
+<!-- Please link any related issues here. -->
 <!-- Jika PR ini menyelesaikan issue, harap sebutkan nomor issue di bawah -->
 Closes # <!-- Issue # disini -->
-
-## 📑 Keterangan
-<!-- Tambahkan deskripsi singkat tentang PR -->
-
-<!-- Anda juga dapat memilih untuk menambahkan daftar perubahan dan apakah perubahan tersebut telah selesai atau belum dengan menggunakan sintaks daftar tugas markdown
-- [ ] Not Completed
-- [x] Completed
--->
-
-## ✅ Tinjau
-<!-- Pastikan PR anda telah menyelesaikan kolom berikut sesuai kebutuhan - -->
-- [ ] PR saya mengikuti gaya kode proyek ini
-- [ ] Kode saya memerlukan perubahan pada dokumentasi
-- [ ] Saya telah memperbarui dokumentasi sesuai kebutuhan
-- [ ] Lulus test
-
-## ℹ Informasi Tambahan
-<!-- Informasi tambahan apa pun seperti perubahan terkini, dependensi yang ditambahkan, screenshots, dll. -->
