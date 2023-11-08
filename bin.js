@@ -26,7 +26,7 @@ if (program.production) opts.push('--production');
 opts.push('--gulpfile', gulpfile);
 opts.push('--cwd', cwd);
 
-if (program.task !== 'dev') {
+if (program.task !== undefined) {
   spawn('gulp', [program.task, '--color', ...opts], {
     stdio: 'inherit',
     cwd: cwd
