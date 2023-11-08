@@ -5,12 +5,12 @@
   "description": "Project description.",
   "license": "MIT",
   "homepage": "http://link-to-your-website.com",
-  "main": "config.js",
+  "main": "index.js",
   "scripts": {
-    "start": "gulp-xtend --task dev",
+    "start": "gulp-xtend",
     "watch": "gulp-xtend --task watch",
     "serve": "gulp-xtend --task serve",
-    "build": "gulp-xtend --task build --production",
+    "build": "gulp-xtend --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
