@@ -1,6 +1,6 @@
 {
   "name": "@buddywinangun/gulp-xtend",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "A Starter kit for building web projects with Gulp.js",
   "license": "MIT",
   "homepage": "https://github.com/buddywinangun/gulp-xtend#readme",
@@ -9,11 +9,11 @@
     "postinstall": "node postinstall-script.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-	"author": {
-		"name": "Buddy Winangun",
+  "author": {
+    "name": "Buddy Winangun",
     "email": "buddywinangun@gmail.com",
     "url": "https://github.com/buddywinangun"
-	},
+  },
   "keywords": [
     "gulp",
     "nunjucks-templates",
@@ -37,8 +37,8 @@
     "url": "https://github.com/buddywinangun/gulp-xtend.git"
   },
   "engines": {
-    "node": ">= 10.x",
-    "npm": ">= 6.0.0"
+    "node": ">= 18.x",
+    "npm": ">= 8.0.0"
   },
   "bugs": {
     "url": "https://github.com/buddywinangun/gulp-xtend/issues",
@@ -53,6 +53,7 @@
     "@rollup/stream": "^3.0.1",
     "autoprefixer": "^10.4.16",
     "browser-sync": "^2.29.3",
+    "commander": "^11.1.0",
     "cross-spawn": "^7.0.3",
     "cssnano": "^6.0.1",
     "del": "^6.1.1",
