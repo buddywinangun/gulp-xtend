@@ -20,9 +20,6 @@ const errorHandler = err => {
 
 // -- Validate Path
 
-const BUILD = 'build/';
-const SOURCE = 'src/';
-const START = 'start/';
 const bannerProject = path.join(cli.cwd, 'banner.txt');
 const confProject = require(path.join(cli.cwd, 'config'));
 const dataProject = require(path.join(cli.cwd, 'package.json'));
@@ -70,12 +67,10 @@ module.exports = {
 
   paths: {
 
-    start: START,
-
     version: (data, path) => {
       let version = {
-        src: path.join(cli.cwd, data.version.input, SOURCE),
-        build: path.join(cli.cwd, data.version.input, BUILD)
+        src: path.join(cli.cwd, data.version.input, confProject.paths.source),
+        build: path.join(cli.cwd, data.version.input, confProject.paths.build)
       };
 
       return version;
@@ -98,7 +93,7 @@ module.exports = {
         level = '.'
       }
 
-      return level;
+      return path.join(level, confProject.paths.assets);
     }
   },
 };

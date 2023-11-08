@@ -36,8 +36,8 @@ const opts = config.paths.version(config.project, path);
 
 const sassOpts = {
   compile: {
-    src: path.join(opts.src, 'sass/*.scss'),
-    dest: path.join(opts.build, 'assets/css'),
+    src: path.join(opts.src, 'sass', '*.scss'),
+    dest: path.join(opts.build, config.project.paths.assets, 'css'),
     banner: {
       text: config.project.banner,
       data: config.project

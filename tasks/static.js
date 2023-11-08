@@ -20,7 +20,7 @@ const opts = config.paths.version(config.project, path);
 const staticOpts = {
   compile: {
     src: path.join(opts.src, 'static/**/*'),
-    dest: path.join(opts.build, 'assets')
+    dest: path.join(opts.build, config.project.paths.assets)
   }
 };
 
