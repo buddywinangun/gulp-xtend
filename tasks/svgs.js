@@ -35,11 +35,14 @@ gulp.task('svgs-compile', done => {
   if (!config.settings.svgs) return done();
 
   // Optimize SVG files
-  return gulp.src(svgOpts.compile.src)
+  gulp.src(svgOpts.compile.src)
     .pipe(svgmin())
     .pipe(gulp.dest(svgOpts.compile.dest, {
       overwrite: true
     }));
+
+  // Signal completion
+  done();
 });
 
 gulp.task('svgs-tasks', gulp.series(

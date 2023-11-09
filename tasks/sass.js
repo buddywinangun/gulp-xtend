@@ -61,9 +61,6 @@ gulp.task('sass-compile', (done) => {
     data: sassOpts.compile.banner.data
   };
 
-  // theme.ext
-  let buildExt = '.css'; // .ext
-
   // Run tasks on all Sass files
   gulp.src(sassOpts.compile.src)
     .pipe(plumber(config.utils.errorHandler))
@@ -85,7 +82,7 @@ gulp.task('sass-compile', (done) => {
     ]))
     .pipe(replace('/*!', '/*'))
     .pipe(rename(function (p) {
-      p.extname = buildExt;
+      p.extname = '.css';
     }))
     .pipe(trim())
     .pipe(!config.utils.isProd ? noop() : cleancss({
