@@ -55,9 +55,7 @@ gulp.task('sass-compile', (done) => {
   if (!config.settings.sass) return done();
 
   const banner = {
-    text: stripIndent(
-      fs.readFileSync(sassOpts.compile.banner.text, 'utf8').trim()
-    ) + '\n\n',
+    text: sassOpts.compile.banner.text,
     data: sassOpts.compile.banner.data
   };
 

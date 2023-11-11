@@ -72,9 +72,7 @@ gulp.task('script-compile', (done) => {
 	}
 
 	const banner = {
-		text: stripIndent(
-			fs.readFileSync(jsOpts.compile.banner.text, 'utf8').trim()
-		) + '\n\n',
+		text: jsOpts.compile.banner.text,
 		data: jsOpts.compile.banner.data
 	};
 

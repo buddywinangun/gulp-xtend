@@ -25,6 +25,18 @@ module.exports = {
   },
 
   //
+  // Banner Template | Append of banner in script js or css
+  //
+
+  banner: ['/**',
+    ' * <%= data.title %> v<%= data.version %> <%= "("+data.homepage+")" %>',
+    ' * Copyright ' + (new Date()).getFullYear() + ' <%= data.author.name %>',
+    ' * Licensed under <%= data.license %>',
+    ' */',
+    ''
+  ].join('\n'),
+
+  //
   // Language Direction
   //
 
