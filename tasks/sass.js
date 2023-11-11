@@ -55,14 +55,9 @@ gulp.task('sass-compile', (done) => {
   if (!config.settings.sass) return done();
 
   const banner = {
-    text: stripIndent(
-      fs.readFileSync(sassOpts.compile.banner.text, 'utf8').trim()
-    ) + '\n\n',
+    text: sassOpts.compile.banner.text,
     data: sassOpts.compile.banner.data
   };
-
-  // theme.ext
-  let buildExt = '.css'; // .ext
 
   // Run tasks on all Sass files
   gulp.src(sassOpts.compile.src)
@@ -85,7 +80,7 @@ gulp.task('sass-compile', (done) => {
     ]))
     .pipe(replace('/*!', '/*'))
     .pipe(rename(function (p) {
-      p.extname = buildExt;
+      p.extname = '.css';
     }))
     .pipe(trim())
     .pipe(!config.utils.isProd ? noop() : cleancss({

@@ -8,12 +8,10 @@
 
 const gulp = require('gulp');
 const sourcemaps = require("gulp-sourcemaps");
-const rename = require("gulp-rename");
 const noop = require("gulp-noop");
 const plumber = require("gulp-plumber");
 const path = require("path");
 const header = require("gulp-header");
-const glob = require('glob');
 const stripIndent = require('strip-indent');
 const fs = require("fs");
 const trim = require('../lib/trim');
@@ -45,14 +43,8 @@ const opts = config.paths.version(config.project, path);
 
 const jsOpts = {
 	compile: {
-		src: {
-			dir: path.join(opts.src, 'js', 'index.js'),
-			filename: 'index.js',
-		},
-		dest: {
-			dir: path.join(opts.build, config.project.paths.assets, 'js'),
-			filename: 'script.js',
-		},
+		src: path.join(opts.src, 'js'),
+		dest: path.join(opts.build, config.project.paths.assets, 'js'),
 		banner: {
 			text: config.project.banner,
 			data: config.project
@@ -69,29 +61,22 @@ gulp.task('script-compile', (done) => {
 	// Make sure this feature is activated before running
 	if (!config.settings.script) return done();
 
-	// index.ext
-	let srcExt = path.extname(jsOpts.compile.src.filename); // .ext
-	let srcName = path.basename(jsOpts.compile.src.filename, srcExt); // index
-	// script.ext
-	let buildExt = path.extname(jsOpts.compile.dest.filename); // .ext
-	let buildName = path.basename(jsOpts.compile.dest.filename, buildExt); // script
-
-	const variant = path.join(jsOpts.compile.src.dir, srcName + '-*' + srcExt);
-
-	const files = [
-		jsOpts.compile.src.dir,
-		...glob.sync(variant)
-	];
+	let files = [];
+	const fileList = fs.readdirSync(jsOpts.compile.src)
+	for (const file of fileList) {
+		const filePath = `${path.join(jsOpts.compile.src, file)}`
+		const srcExt = `${path.extname(file)}`; // .ext
+		if (fs.statSync(filePath).isFile() && srcExt === '.js') {
+			files.push(filePath)
+		}
+	}
 
 	const banner = {
-		text: stripIndent(
-			fs.readFileSync(jsOpts.compile.banner.text, 'utf8').trim()
-		) + '\n\n',
+		text: jsOpts.compile.banner.text,
 		data: jsOpts.compile.banner.data
 	};
 
 	const bundles = files.map(entry => {
-
 		const options = {
 			input: entry,
 			output: {
@@ -125,11 +110,6 @@ gulp.task('script-compile', (done) => {
 			.pipe(plumber(config.utils.errorHandler))
 			.pipe(source(path.basename(entry)))
 			.pipe(buffer())
-			.pipe(rename(function (p) {
-				p.basename = p.basename.replace(srcName + '-', buildName + '-');
-				p.basename = p.basename.replace(srcName, buildName);
-				p.extname = buildExt;
-			}))
 			.pipe(trim())
 			.pipe(!config.utils.isProd ? noop() : terser({
 				mangle: true,
@@ -146,7 +126,7 @@ gulp.task('script-compile', (done) => {
 				loadMaps: true
 			}))
 			.pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
-			.pipe(gulp.dest(jsOpts.compile.dest.dir, {
+			.pipe(gulp.dest(jsOpts.compile.dest, {
 				overwrite: true
 			}));
 	});

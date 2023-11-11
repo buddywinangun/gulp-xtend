@@ -34,10 +34,13 @@ gulp.task('static-compile', done => {
   if (!config.settings.static) return done();
 
   // Copy static files
-  return gulp.src(staticOpts.compile.src)
+  gulp.src(staticOpts.compile.src)
     .pipe(gulp.dest(staticOpts.compile.dest, {
       overwrite: true
     }));
+
+  // Signal completion
+  done();
 });
 
 gulp.task('static-tasks', gulp.series(

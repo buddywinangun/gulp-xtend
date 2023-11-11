@@ -20,7 +20,6 @@ const errorHandler = err => {
 
 // -- Validate Path
 
-const bannerProject = path.join(cli.cwd, 'banner.txt');
 const confProject = require(path.join(cli.cwd, 'config'));
 const dataProject = require(path.join(cli.cwd, 'package.json'));
 
@@ -45,7 +44,6 @@ module.exports = {
   //
 
   project: {
-    banner: bannerProject,
     data: dataProject,
     dir: cli.cwd,
     ...confProject,
