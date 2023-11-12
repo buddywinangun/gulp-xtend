@@ -208,29 +208,10 @@ gulp.task('extract-files', () => {
   }
 });
 
-gulp.task('extract-dependencies', () => {
-
-  for (var k in config.project.copyDependencies) {
-    path = '../' + config.project.dir + k;
-
-    if (k.search('node_modules') !== 0) {
-      path = '../' + config.project.dir + 'src' + '/' + k
-    }
-
-    gulp.src(path)
-      .pipe(gulp.dest(extractOpts.compile.dest + config.project.copyDependencies[k]))
-  }
-
-  return new Promise(function (resolve, reject) {
-    resolve();
-  });
-});
-
 gulp.task('extract-tasks', gulp.series(
   'extract-node',
   'extract-vendor-css',
   'extract-vendor-js',
   'extract-node-files',
   'extract-files',
-  'extract-dependencies',
 ));

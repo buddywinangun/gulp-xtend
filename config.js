@@ -68,7 +68,7 @@ module.exports = {
     version: (data, path) => {
       let version = {
         src: path.join(cli.cwd, data.version.input, confProject.paths.source),
-        build: path.join(cli.cwd, data.version.input, confProject.paths.build)
+        build: path.join(cli.cwd, data.version.output, confProject.paths.build)
       };
 
       return version;

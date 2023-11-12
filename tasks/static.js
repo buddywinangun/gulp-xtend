@@ -43,6 +43,24 @@ gulp.task('static-compile', done => {
   done();
 });
 
+gulp.task('static-dependencies', (done) => {
+
+  for (var k in config.project.copyDependencies) {
+    getpath = path.join(config.project.dir, k);
+
+    if (k.search('node_modules') !== 0) {
+      getpath = path.join(config.project.dir, config.project.version.input, k);
+    }
+
+    gulp.src(getpath)
+      .pipe(gulp.dest(path.join(staticOpts.compile.dest, config.project.copyDependencies[k])))
+  }
+
+  // Signal completion
+  done();
+});
+
 gulp.task('static-tasks', gulp.series(
-  'static-compile'
+  'static-compile',
+  'static-dependencies'
 ));
