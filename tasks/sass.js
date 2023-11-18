@@ -13,8 +13,6 @@ const rename = require("gulp-rename");
 const noop = require("gulp-noop");
 const plumber = require("gulp-plumber");
 const path = require('path');
-const stripIndent = require('strip-indent');
-const fs = require("fs");
 
 // -- SASS
 

@@ -12,7 +12,6 @@ const noop = require("gulp-noop");
 const plumber = require("gulp-plumber");
 const path = require("path");
 const header = require("gulp-header");
-const stripIndent = require('strip-indent');
 const fs = require("fs");
 const trim = require('../lib/trim');
 const merge = require('merge-stream');
