@@ -20,7 +20,6 @@ require('./tasks/sass');
 require('./tasks/script');
 require('./tasks/svgs');
 require('./tasks/static');
-require('./tasks/extract');
 require('./tasks/syncs');
 
 // ---------------------------------------------------

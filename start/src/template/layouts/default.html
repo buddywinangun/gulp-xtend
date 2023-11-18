@@ -8,29 +8,35 @@
 
   {% include "../partials/head.html" %}
 
-  {% block styles %}
-  <!-- CSS -->
-  <link rel="stylesheet" href="@@autopath/css/style.css{{"?v="+data.version}}">
+  {% block vendor_styles -%}
   <!-- Vendor CSS -->
   <!-- bundlecss:vendor [@@autopath] {{"?v="+data.version}} -->
   {%- endblock -%}
 
-  {% block head %}
-  <!-- External page head section -->
+  {% block styles -%}
+  <!-- CSS -->
+  <link rel="stylesheet" href="@@autopath/css/style.css{{"?v="+data.version}}">
   {%- endblock -%}
+
+  {% block head -%}{%- endblock -%}
 </head>
 
 <body {{ bodyAttr | safe if bodyAttr }}>
-  {%- block content -%}
+  {% block content -%}
   <!-- Content -->
-  {%- endblock -%}
+  {% endblock -%}
 
-  {%- block scripts -%}
-  <!-- JS -->
-  <script src="@@autopath/js/script.js{{"?v="+data.version}}" defer></script>
+  {% block vendor_scripts -%}
   <!-- Vendor JS -->
   <!-- bundlejs:vendor [@@autopath] {{"?v="+data.version}} -->
+  {%- endblock %}
+
+  {% block scripts -%}
+  <!-- JS -->
+  <script src="@@autopath/js/script.js{{"?v="+data.version}}" defer></script>
   {%- endblock -%}
+
+  {% block foot -%}{%- endblock -%}
 </body>
 
 </html>
