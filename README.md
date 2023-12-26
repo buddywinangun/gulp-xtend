@@ -21,7 +21,7 @@ Fitur utama meliputi:
 Alat pendukung yang tersedia untuk membangun proyek yang luar biasa.
 
 - [**GULP 4**](https://gulpjs.com/) Otomatiskan dan tingkatkan alur kerja Anda.
-- [**Nunjucks**](https://mozilla.github.io/nunjucks/) templating yang kaya dan kuat untuk JavaScript.
+- [**Twig**](https://twig.symfony.com/) Mesin template modern.
 - [**Browsersync**](https://browsersync.io/) dengan memuat ulang langsung.
 - [**Sass**](http://sass-lang.com/) CSS pre-processor dengan [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
 - [**Rollupjs**](https://rollupjs.org/) Bundel modul untuk JavaScript
@@ -38,16 +38,19 @@ Lihat [Release schedule](/CHANGELOG.md#release-schedule) untuk jadwal rilis terb
 
 > Jika sebelumnya Anda telah menginstal gulp secara global, jalankan `npm rm --global gulp` sebelum mengikuti petunjuk berikut.
 
-## Installation
+## Quickstart
 
 1. Create and Navigate to the newly project directory
 ```bash
 mkdir my_directory; cd my_directory
 ```
-
-2. Install dependencies
+2. Install Gulp dependencies
 ```bash
 npm install @buddywinangun/gulp-xtend
+```
+3. Run the compiler
+```bash
+npm start
 ```
 
 ## Contributing

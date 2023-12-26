@@ -7,7 +7,6 @@ Our [package.json](./package.json) includes the following commands for develop t
 | Command | Description |
 | ------- | ----------- |
 | `npm start` | Development Build Project. |
-| `npm run serve` | Serve process |
 | `npm run watch` | Watches the source files and automatically building them whenever you save. |
 | `npm run build` | Build the theme. |
 

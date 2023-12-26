@@ -1,66 +1,46 @@
-/**
- * clean.js
- *
- * The gulp task runner file.
- */
-
 // -- General
 
-const gulp = require('gulp');
-const path = require('path');
+const {src, dest} = require('gulp');
+const util = require('util');
+const defaultRegistry = require('undertaker-registry');
+const gulpLoadPlugins = require('gulp-load-plugins');
 
-// ---------------------------------------------------
-// -- Config
-// ---------------------------------------------------
+const $ = gulpLoadPlugins({
+  camelize: true,
+  rename : {'gulp-util' : 'gutil'}
+});
 
-const config = require('../config');
+// -- Registry
 
-const opts = config.paths.version(config.project, path);
+function staticRegistry(opts) {
+  defaultRegistry.call(this);
+  this.opts = opts;
+}
 
-const staticOpts = {
-  compile: {
-    src: path.join(opts.src, 'static/**/*'),
-    dest: path.join(opts.build, config.project.paths.assets)
-  }
+util.inherits(staticRegistry, defaultRegistry);
+
+staticRegistry.prototype.init = function (gulpInst) {
+  const opts = this.opts;
+
+  // Copy Fonts files
+  gulpInst.task('copy:fonts', () => {
+    return src(opts.options.static.files + '/fonts' + '/**/*')
+      .pipe(dest(opts.options.static.destination + '/fonts'));
+  });
+
+  // Optimize Images files
+  gulpInst.task('min:image', () => {
+    return src(opts.options.static.files + '/images' + '/**/*' , { allowEmpty: true })
+      .pipe($.imagemin([
+          $.imagemin.gifsicle({ interlaced: true }),
+          $.imagemin.mozjpeg({ quality: 70, progressive: true }),
+          $.imagemin.optipng({ optimizationLevel: 5, interlaced: true}),
+          $.imagemin.svgo({
+              plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+          }),
+      ]))
+      .pipe(dest(opts.options.static.destination + '/images'));
+  });
 };
 
-// ---------------------------------------------------
-// -- GULP TASKS
-// ---------------------------------------------------
-
-gulp.task('static-compile', done => {
-
-  // Make sure this feature is activated before running
-  if (!config.settings.static) return done();
-
-  // Copy static files
-  gulp.src(staticOpts.compile.src)
-    .pipe(gulp.dest(staticOpts.compile.dest, {
-      overwrite: true
-    }));
-
-  // Signal completion
-  done();
-});
-
-gulp.task('static-dependencies', (done) => {
-
-  for (var k in config.project.copyDependencies) {
-    getpath = path.join(config.project.dir, k);
-
-    if (k.search('node_modules') !== 0) {
-      getpath = path.join(config.project.dir, config.project.version.input, k);
-    }
-
-    gulp.src(getpath)
-      .pipe(gulp.dest(path.join(staticOpts.compile.dest, config.project.copyDependencies[k])))
-  }
-
-  // Signal completion
-  done();
-});
-
-gulp.task('static-tasks', gulp.series(
-  'static-compile',
-  'static-dependencies'
-));
+exports.registry = staticRegistry;

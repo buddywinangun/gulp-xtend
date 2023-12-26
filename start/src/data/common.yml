@@ -1,0 +1,19 @@
+Common:
+    title: "A Starter kit for frontend development with Gulp.js"
+    canonical: "/"
+    description: "A Starter kit for frontend development with Gulp.js. For quick projects kickoff"
+    open_graph:
+        title: "A Starter kit for frontend development with Gulp.js"
+        site_name: "Gulp starter kit"
+        image: "/og-image.png"
+        url: "/"
+        type: "website"
+        locale: "en_US"
+        description: "A Starter kit for frontend development with Gulp.js. For quick projects kickoff"
+    twitter:
+        card: "summary_large_image"
+        site: "@twitter"
+        title: "A Starter kit for frontend development with Gulp.js"
+        url: "/"
+        description: "A Starter kit for frontend development with Gulp.js. For quick projects kickoff"
+        image: "/og-image.png"

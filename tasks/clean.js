@@ -1,44 +1,29 @@
-/**
- * clean.js
- *
- * The gulp task runner file.
- */
-
 // -- General
 
-const gulp = require('gulp');
-const path = require('path');
+const util = require('util');
+const defaultRegistry = require('undertaker-registry');
+const alert = require('../lib/alert');
+
+// -- Delete
+
 const del = require("del");
-const cache = require("gulp-cached");
 
-// ---------------------------------------------------
-// -- Config
-// ---------------------------------------------------
+// -- Registry
 
-const config = require('../config');
+function cleanRegistry(opts) {
+  defaultRegistry.call(this);
+  this.opts = opts;
+}
 
-// ---------------------------------------------------
-// -- GULP TASKS
-// ---------------------------------------------------
+util.inherits(cleanRegistry, defaultRegistry);
 
-// Remove pre-existing content from output folders
-gulp.task('clean', done => {
+cleanRegistry.prototype.init = function (gulpInst) {
+  const opts = this.opts;
 
-	// Make sure this feature is activated before running
-  if (!config.settings.clean) return done();
-
-	// Clean the dist folder
-  del.sync([config.paths.version(config.project, path).build], {
-    force: true
+  gulpInst.task('clean', (cb) => {
+    del.sync(opts.options.clean.dist.files, {force: true});
+    cb();
   });
+};
 
-	// Signal completion
-  done();
-});
-
-gulp.task('clear-cache', done => {
-  cache.caches = {};
-
-	// Signal completion
-  done();
-});
+exports.registry = cleanRegistry;

@@ -1,0 +1,72 @@
+/***************************************
+*   Global variables
+***************************************/
+$global-max-width: 1320px !default;
+$global-font-size-px: 16px !default;
+$global-gutter: 10px !default;
+$global-font-size: 100%;
+$global-line-height: 1.5;
+$global-units: rem;
+
+/***************************************
+*   Colors
+***************************************/
+$c-white: #fff;
+$c-gray: #484848;
+$c-black: #000;
+
+$c-neutroLightest: lighten($c-gray, 65%);
+$c-neutroLighter: lighten($c-gray, 50%);
+$c-neutroLight: lighten($c-gray, 25%);
+$c-neutro: $c-gray;
+$c-neutroDark: darken($c-gray, 15%);
+$c-neutroDarker: darken($c-gray, 20%);
+$c-neutroDarkest: darken($c-gray, 30%);
+
+$c-main: rgb(5, 166, 182);
+$c-secondary: rgb(218, 154, 29);
+
+/***************************************
+*   Media Queries
+***************************************/
+$xsmall-range:  0, 30rem;           /* 0, 480px */
+$small-range:   30.063rem, 40rem;   /* 481px, 640px */
+$xmedium-range: 40.063rem, 48rem;   /* 641px, 768px */
+$medium-range:  48rem, 64rem;       /* 768px, 1024px */
+$large-range:   64.063rem, 90rem;   /* 1025px, 1440px */
+$xlarge-range:  90.063rem, 120rem;  /* 1441px, 1920px */
+$xxlarge-range: 120.063rem;         /* 1921px */
+
+$screen: "only screen" !default;
+
+$landscape: "#{$screen} and (orientation: landscape)" !default;
+$portrait: "#{$screen} and (orientation: portrait)" !default;
+
+$xsmall-up: $screen !default;
+$xsmall-only: "#{$screen} and (max-width: #{nth($xsmall-range, 2)})" !default;
+
+$small-up: "#{$screen} and (min-width:#{nth($small-range, 1)})" !default;
+$small-only: "#{$screen} and (min-width:#{nth($small-range, 1)}) and (max-width:#{nth($small-range, 2)})" !default;
+
+$xmedium-up: "#{$screen} and (min-width:#{nth($xmedium-range, 1)})" !default;
+$xmedium-only: "#{$screen} and (min-width:#{nth($xmedium-range, 1)}) and (max-width:#{nth($xmedium-range, 2)})" !default;
+
+$medium-up: "#{$screen} and (min-width:#{nth($medium-range, 1)})" !default;
+$medium-only: "#{$screen} and (min-width:#{nth($medium-range, 1)}) and (max-width:#{nth($medium-range, 2)})" !default;
+
+$large-up: "#{$screen} and (min-width:#{nth($large-range, 1)})" !default;
+$large-only: "#{$screen} and (min-width:#{nth($large-range, 1)}) and (max-width:#{nth($large-range, 2)})" !default;
+
+$xlarge-up: "#{$screen} and (min-width:#{nth($xlarge-range, 1)})" !default;
+$xlarge-only: "#{$screen} and (min-width:#{nth($xlarge-range, 1)}) and (max-width:#{nth($xlarge-range, 2)})" !default;
+
+$xxlarge-up: "#{$screen} and (min-width:#{nth($xxlarge-range, 1)})" !default;
+
+$retina: (
+    "#{$screen} and (-webkit-min-device-pixel-ratio: 2)",
+    "#{$screen} and (min--moz-device-pixel-ratio: 2)",
+    "#{$screen} and (-o-min-device-pixel-ratio: 2/1)",
+    "#{$screen} and (min-device-pixel-ratio: 2)",
+    "#{$screen} and (min-resolution: 192dpi)",
+    "#{$screen} and (min-resolution: 2dppx)"
+);

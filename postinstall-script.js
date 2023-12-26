@@ -1,4 +1,4 @@
-// post-install.js
+// postinstall-script.js
 
 /**
  * Script to run after npm install
@@ -10,13 +10,9 @@
 const fs = require("fs");
 const path = require("path");
 
-// User's local directory
-const userPath = process.env.INIT_CWD
-
-if(__dirname.includes('node_modules')
-  && fs.existsSync(path.join(userPath, 'config.js')) === false) {
+if(__dirname.includes('node_modules') && fs.existsSync(path.join(__dirname.split('node_modules')[0], 'config.js')) === false) {
   // Moving files to user's local directory
-  fs.cpSync('start', userPath, {
+  fs.cpSync(__dirname + '/start', __dirname.split('node_modules')[0], {
     recursive: true
   });
 }

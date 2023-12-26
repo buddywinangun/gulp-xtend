@@ -1,0 +1,6 @@
+Routes:
+    stylesheets: "/assets/css/"
+    javascripts: "/assets/js/"
+    images: "/assets/images/"
+    fonts: "/assets/fonts/"
+    vendors: "/assets/js/libs/vendors/"

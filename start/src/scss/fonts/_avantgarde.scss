@@ -1,0 +1,10 @@
+@font-face{
+    font-family:'AvantGarde';
+    font-weight:'normal';
+    font-style:'normal';
+    src:url(../fonts/AvantGarde/ITCAvantGardeStd-Md.otf);
+    src:url(../fonts/AvantGarde/ITCAvantGardeStd-Md.eot?#iefix) format("embedded-opentype"),url(../fonts/AvantGarde/ITCAvantGardeStd-Md.woff) format("woff"),url(../fonts/AvantGarde/ITCAvantGardeStd-Md.ttf) format("truetype"),url(../fonts/AvantGarde/ITCAvantGardeStd-Md.svg#ITCAvantGardeStd-Md) format("svg")
+}
+
+$t-AvantGarde: "AvantGarde", Arial, Helvetica, sans-serif;
+$t-default: $t-AvantGarde;

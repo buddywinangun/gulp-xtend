@@ -1,141 +1,101 @@
-/**
- * script.js
- *
- * The gulp task runner file.
- */
-
 // -- General
 
-const gulp = require('gulp');
-const sourcemaps = require("gulp-sourcemaps");
-const noop = require("gulp-noop");
-const plumber = require("gulp-plumber");
+const { src, dest } = require('gulp');
+const util = require('util');
+const defaultRegistry = require('undertaker-registry');
+const gulpLoadPlugins = require('gulp-load-plugins');
 const path = require("path");
-const header = require("gulp-header");
 const fs = require("fs");
-const trim = require('../lib/trim');
 const merge = require('merge-stream');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const $ = gulpLoadPlugins({
+  camelize: true,
+  rename : {'gulp-util' : 'gutil'}
+});
 
 // -- Js Blundle
 
-const rollupStream = require('@rollup/stream');
-const {
-	babel
-} = require('@rollup/plugin-babel');
-const {
-	nodeResolve
-} = require('@rollup/plugin-node-resolve');
+const { babel } = require('@rollup/plugin-babel');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
-const globImport = require('rollup-plugin-glob-import');
-const globals = require('rollup-plugin-node-globals');
-const terser = require("gulp-terser");
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
+const rollupStream = require('@rollup/stream');
+const eslint = require('gulp-eslint');
 
-// ---------------------------------------------------
-// -- Config
-// ---------------------------------------------------
+// -- Registry
 
-const config = require('../config');
+function scriptRegistry(opts) {
+  defaultRegistry.call(this);
+  this.opts = opts || defaults;
+}
 
-const opts = config.paths.version(config.project, path);
+util.inherits(scriptRegistry, defaultRegistry);
 
-const jsOpts = {
-	compile: {
-		src: path.join(opts.src, 'js'),
-		dest: path.join(opts.build, config.project.paths.assets, 'js'),
-		banner: {
-			text: config.project.banner,
-			data: config.project
+scriptRegistry.prototype.init = function(gulpInst) {
+  const opts = this.opts;
+
+  gulpInst.task('script:lint', () => {
+    return src(opts.options.script.files, { allowEmpty: true })
+      .pipe(eslint({
+        configFile: opts.project.configFile.eslint,
+      }))
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
+  });
+
+  gulpInst.task('script:compile', () => {
+		let files = [];
+		const fileList = fs.readdirSync(opts.options.script.files)
+		for (const file of fileList) {
+			const filePath = `${path.join(opts.options.script.files, file)}`
+			const srcExt = `${path.extname(file)}`; // .ext
+			if (fs.statSync(filePath).isFile() && srcExt === '.js') {
+				files.push(filePath)
+			}
 		}
-	}
+
+		const bundles = files.map(entry => {
+			return rollupStream({
+				input: entry,
+				output: {
+					format: 'umd',
+					name: 'xtend',
+					sourcemap: true
+				},
+				plugins: [
+					babel(opts.options.script.babel_args),
+					nodeResolve(opts.options.script.resolve_args),
+					commonjs(),
+				]
+			})
+				.pipe(source(path.basename(entry)))
+				.pipe(buffer())
+				.pipe($.header(opts.options.banner.text, opts.options.banner))
+				.pipe(dest(opts.options.script.destination, {overwrite: true}));
+		});
+
+		return merge(bundles);
+  });
+
+  gulpInst.task('script:minify', () => {
+    return src(opts.options.script.destination + '/**/*')
+			.pipe($.terser(opts.options.script.min_args))
+			.pipe($.rename({ suffix : '.min' }))
+      .pipe(dest(opts.options.script.destination));
+  });
+
+  gulpInst.task('script:vendor', (cb) => {
+		setvendor_script = new Set(opts.vendor_script)
+
+    if ([...setvendor_script].length === 0) return cb();
+
+    src([...setvendor_script])
+      .pipe($.concat('vendor.js'))
+      .pipe($.terser(opts.options.script.min_args))
+      .pipe(dest(opts.options.script.destination));
+
+    cb();
+  });
 };
 
-// ---------------------------------------------------
-// -- GULP TASKS
-// ---------------------------------------------------
-
-gulp.task('script-compile', (done) => {
-
-	// Make sure this feature is activated before running
-	if (!config.settings.script) return done();
-
-	let files = [];
-	const fileList = fs.readdirSync(jsOpts.compile.src)
-	for (const file of fileList) {
-		const filePath = `${path.join(jsOpts.compile.src, file)}`
-		const srcExt = `${path.extname(file)}`; // .ext
-		if (fs.statSync(filePath).isFile() && srcExt === '.js') {
-			files.push(filePath)
-		}
-	}
-
-	const banner = {
-		text: jsOpts.compile.banner.text,
-		data: jsOpts.compile.banner.data
-	};
-
-	const bundles = files.map(entry => {
-		const options = {
-			input: entry,
-			output: {
-				format: 'umd',
-				sourcemap: true
-			},
-			plugins: [
-				babel({
-					presets: [
-						[
-							'@babel/preset-env',
-							{
-								loose: true,
-								bugfixes: true,
-								modules: false
-							}
-						]
-					],
-					babelHelpers: 'bundled',
-					compact: true,
-					exclude: 'node_modules/**'
-				}),
-				nodeResolve(),
-				commonjs(),
-				globImport(),
-				globals()
-			]
-		};
-
-		return rollupStream(options)
-			.pipe(plumber(config.utils.errorHandler))
-			.pipe(source(path.basename(entry)))
-			.pipe(buffer())
-			.pipe(trim())
-			.pipe(!config.utils.isProd ? noop() : terser({
-				mangle: true,
-				compress: {
-					typeofs: false
-				},
-				format: {
-					comments: false
-				},
-				sourceMap: false
-			}))
-			.pipe(header(banner.text, banner.data))
-			.pipe(config.utils.isProd ? noop() : sourcemaps.init({
-				loadMaps: true
-			}))
-			.pipe(config.utils.isProd ? noop() : sourcemaps.write('./maps'))
-			.pipe(gulp.dest(jsOpts.compile.dest, {
-				overwrite: true
-			}));
-	});
-
-	merge(bundles);
-
-	// Signal completion
-	done();
-});
-
-gulp.task('script-tasks', gulp.series(
-	'script-compile',
-));
+exports.registry = scriptRegistry;

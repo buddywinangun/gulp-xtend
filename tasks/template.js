@@ -1,98 +1,106 @@
-/**
- * template.js
- *
- * The gulp task runner file.
- */
-
 // -- General
 
-const gulp = require('gulp');
-const plumber = require("gulp-plumber");
+const { src, dest } = require('gulp');
+const util = require('util');
+const defaultRegistry = require('undertaker-registry');
+const gulpLoadPlugins = require('gulp-load-plugins');
 const replace = require('gulp-replace');
 const path = require('path');
+const fs = require('fs');
 const rename = require("gulp-rename");
-const trim = require('../lib/trim');
 const deleteLines = require("gulp-delete-lines");
+const trim = require('../lib/trim');
+const alert = require('../lib/alert');
+const $ = gulpLoadPlugins({
+  camelize: true,
+  rename : {'gulp-util' : 'gutil'}
+});
 
 // -- Compile
 
 const templateCompile = require('../lib/template');
-const beautify = require("gulp-jsbeautifier");
 
-// -- Extra
+// -- Registry
 
-const cleancss = require("gulp-clean-css");
-const uglify = require('gulp-uglify-es').default;
-const concat = require('gulp-concat');
+function templateRegistry(opts) {
+  defaultRegistry.call(this);
+  this.opts = opts;
+}
 
-// ---------------------------------------------------
-// -- Config
-// ---------------------------------------------------
+util.inherits(templateRegistry, defaultRegistry);
 
-const config = require('../config');
+templateRegistry.prototype.init = function (gulpInst) {
+  const opts = this.opts;
 
-const opts = config.paths.version(config.project, path);
-
-const templateOpts = {
-  compile: {
-    src: [
-      path.join(opts.src, '**/*.html'),
-      '!' + path.join(opts.src, 'template/**/*.html'),
-      '!' + path.join(opts.src, '**/_*.html')
-    ],
-    dest: opts.build,
-    opts: {
-      context: config.project,
-    }
-  }
-};
-
-let vendor_style = [],
+  let vendor_style = [],
   vendor_script = [],
   skippedNodeFiles = [],
   skippedFiles = [];
 
-// ---------------------------------------------------
-// -- GULP TASKS
-// ---------------------------------------------------
+  exports.vendor_style = vendor_style;
+  exports.vendor_script = vendor_script;
+  exports.skippedNodeFiles = skippedNodeFiles;
+  exports.skippedFiles = skippedFiles;
 
-gulp.task('template-compile', done => {
+  gulpInst.task('template:data', () => {
+    return src(opts.options.template.json.files, { allowEmpty: true })
+      .pipe($.plumber({ errorHandler: alert.error }))
+      .pipe($.concat(opts.options.template.json.file))
+      .pipe(dest( opts.options.template.json.destination ))
+      .pipe($.yaml())
+      .pipe(dest('./'));
+  });
 
-  // Make sure this feature is activated before running
-  if (!config.settings.template) return done();
+  gulpInst.task('template:compile', () => {
+    let data = fs.readFileSync(opts.options.template.data, 'utf-8');
+    data = JSON.parse(data.toString());
+    json_data = data;
 
-  // theme.ext
-  let buildExt = '.html'; // .ext
+    if(opts.project.template.templating == 'twig') {
+      let twig_args = {
+          data: {...json_data, ...opts.project},
+          cache: false,
+          functions: [],
+          filters: []
+      };
 
-  if (config.project.templating == 'nunjucks') {
-    gulp.src(templateOpts.compile.src, {
+      return src(opts.options.template.files)
+        .pipe($.twig(twig_args))
+        .pipe(rename({extname: opts.options.template.extname}))
+        // .pipe($.replace(/\{\*timestamp\*\}/g, opts.timestamp))
+        .pipe(dest(opts.options.template.destination));
+    }
+    else {
+      return src(opts.options.template.files)
+        .pipe(templateCompile(opts.options.template.nunjucks_args))
+        .pipe(rename({extname: opts.options.template.extname}))
+        .pipe(trim())
+        .pipe(dest(opts.options.template.destination));
+    }
+  });
+
+  gulpInst.task('template:minify', () => {
+    return src(opts.options.template.destination + '/**/*.html')
+      .pipe($.minifyHtml(opts.options.template.min_args))
+      .pipe(dest(opts.options.template.destination));
+  });
+
+  gulpInst.task('template:extract', () => {
+    return src(opts.options.template.destination + '/**/*.html', {
         allowEmpty: true
       })
-      .pipe(plumber(config.utils.errorHandler))
-      .pipe(templateCompile(templateOpts.compile.opts))
-      .pipe(beautify({
-        html: {
-          indent_size: 2,
-          indent_char: ' ',
-          max_preserve_newlines: 1
-        }
-      }))
-      .pipe(rename(function (p) {
-        p.extname = buildExt;
-      }))
-      .pipe(trim())
       .pipe(replace(/@@autopath/g, function (match) {
-        return config.paths.level(this.file)
+        return opts.paths.level(this.file)
       }))
-      .pipe(replace(new RegExp('(.*?)(\\.+\\/)+' + `(${config.project.paths.assets}vendor|node_modules)` + '\/.*\\.(js|css)', 'g'), function (match, p1, p2, p3, p4) {
+      .pipe(replace(new RegExp('(.*?)(\\.+\\/)+' + `(${opts.project.assets.dir}vendor|node_modules)` + '\/.*\\.(js|css)', 'g'), function (match, p1, p2, p3, p4) {
         if (p1.search(/(&gt|&lt|<!--|\/\/)/g) >= 0) return match;
 
         getpath = match.replace(/(\.+\/)+/, '').replace(p1, '')
 
         // Node Modules Vendor
         if (getpath.search('node_modules') === 0) {
-          if (config.project.skipFilesFromBundle.indexOf(getpath) < 0) {
-            let splite = path.join(config.project.dir, getpath);
+          if (opts.project.skipFilesFromBundle.indexOf(getpath) < 0) {
+            let splite = path.join(opts.project.dir, getpath);
             if (p4 === "css") {
               if (vendor_style.includes(splite) == false) {
                 vendor_style.push(splite)
@@ -103,24 +111,24 @@ gulp.task('template-compile', done => {
               }
             }
 
-            return match + " " + config.utils.deleteLine
+            return match + " " + opts.utils.deleteLine
           } else {
             splitedPath = getpath.split('/')
 
-            let splite = path.join(config.project.dir, splitedPath[0], '*' + splitedPath[1], '**');
+            let splite = path.join(opts.project.dir, splitedPath[0], '*' + splitedPath[1], '**');
             if (skippedNodeFiles.includes(splite) == false) {
               skippedNodeFiles.push(splite)
             }
           }
 
-          return match.replace('node_modules', config.project.paths.assets + 'vendor'.replace(templateOpts.compile.dest + '/', ''))
+          return match.replace('node_modules', opts.project.assets.dir + 'vendor'.replace(opts.options.template.destination + '/', ''))
         }
 
         // Local Vendor
         else {
-          if (config.project.skipFilesFromBundle.indexOf(getpath) < 0) {
-            getpath = getpath.replace(config.project.paths.assets + 'vendor', 'vendor')
-            let splite = path.join(opts.src, getpath);
+          if (opts.project.skipFilesFromBundle.indexOf(getpath) < 0) {
+            getpath = getpath.replace(opts.project.assets.dir + 'vendor', 'vendor')
+            let splite = path.join(opts.project.assets.src.dir, getpath);
             if (p4 === "css") {
               if (vendor_style.includes(splite) == false) {
                 vendor_style.push(splite)
@@ -131,11 +139,11 @@ gulp.task('template-compile', done => {
               }
             }
 
-            return match + " " + config.utils.deleteLine
+            return match + " " + opts.utils.deleteLine
           } else {
             splitedPath = getpath.split('/')
 
-            let splite = path.join(opts.src, splitedPath[0], '*' + splitedPath[1], splitedPath[2], '**');
+            let splite = path.join(opts.project.assets.src.dir, splitedPath[0], '*' + splitedPath[1], splitedPath[2], '**');
             if (skippedFiles.includes(splite) == false) {
               skippedFiles.push(splite)
             }
@@ -144,7 +152,7 @@ gulp.task('template-compile', done => {
           return match
         }
       }))
-      .pipe(replace(new RegExp('(.*?)(\\.+\\/)+(.*?)\\.' + '(' + config.project.fileTypes + '|html' + ')', 'g'), function (match, p1, p2) {
+      .pipe(replace(new RegExp('(.*?)(\\.+\\/)+(.*?)\\.' + '(' + opts.project.options.fileTypes + '|html' + ')', 'g'), function (match, p1, p2) {
         if (p1.search(/(&gt|&lt|<!--|\/\/|\.html)/g) >= 0) return match
         if (match.search(/\.html/g) >= 0) return match
 
@@ -153,103 +161,31 @@ gulp.task('template-compile', done => {
         if (getpath.search('node_modules') >= 0) {
           splitedPath = getpath.split('/')
 
-          let splite = path.join(config.project.dir, splitedPath[0], '*' + splitedPath[1] + '**');
+          let splite = path.join(opts.project.dir, splitedPath[0], '*' + splitedPath[1] + '**');
           if (skippedNodeFiles.includes(splite) == false) {
             skippedNodeFiles.push(splite)
           }
 
-          return match.replace('node_modules', config.project.paths.assets + 'vendor'.replace(templateOpts.compile.dest + '/', ''))
+          return match.replace('node_modules', opts.project.assets.dir + 'vendor'.replace(opts.options.template.destination + '/', ''))
         }
 
         return match
       }))
       .pipe(deleteLines({
         'filters': [
-          new RegExp(config.utils.deleteLine, 'i')
+          new RegExp(opts.utils.deleteLine, 'i')
         ]
       }))
       .pipe(replace(/<!-- bundlecss:vendor \[(.*?)\](.*)-->/g, function (math, p1, p2) {
         if (vendor_style.length == 0) return ' ';
-        return `<link rel="stylesheet" href="${p1}/${config.project.paths.assets}css/vendor.css${p2.trim()}">`;
+        return `<link rel="stylesheet" href="${p1}/${opts.project.assets.dir}css/vendor.css${p2.trim()}">`;
       }))
       .pipe(replace(/<!-- bundlejs:vendor \[(.*?)\](.*)-->/g, function (math, p1, p2) {
         if (vendor_script.length == 0) return ' ';
-        return `<script src="${p1}/${config.project.paths.assets}js/vendor.js${p2.trim()}"></script>`;
+        return `<script src="${p1}/${opts.project.assets.dir}js/vendor.js${p2.trim()}"></script>`;
       }))
-      .pipe(gulp.dest(templateOpts.compile.dest, {
-        overwrite: true
-      }));
-  }
+      .pipe(dest(opts.options.template.destination));
+  });
+};
 
-  // Signal completion
-  done();
-});
-
-gulp.task('extract-vendor-css', (done) => {
-
-  setvendor_style = new Set(vendor_style)
-
-  if ([...setvendor_style].length === 0) return done();
-
-  gulp
-    .src([...setvendor_style])
-    .pipe(cleancss({
-      compatibility: 'ie11'
-    }))
-    .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(path.join(templateOpts.compile.dest, config.project.paths.assets, 'css')));
-
-  // Signal completion
-  done();
-});
-
-gulp.task('extract-vendor-js', (done) => {
-
-  setvendor_script = new Set(vendor_script)
-
-  if ([...setvendor_script].length === 0) return done();
-
-  gulp
-    .src([...setvendor_script], {
-      allowEmpty: true,
-    })
-    .pipe(concat('vendor.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest(path.join(templateOpts.compile.dest, config.project.paths.assets, 'js')));
-
-  done();
-});
-
-gulp.task('extract-node-files', (done) => {
-
-  SetskippedNodeFiles = new Set(skippedNodeFiles)
-
-  if ([...SetskippedNodeFiles].length === 0) return done();
-
-  gulp
-    .src([...SetskippedNodeFiles])
-    .pipe(gulp.dest(path.join(templateOpts.compile.dest, config.project.paths.assets, 'vendor')));
-
-  done();
-});
-
-gulp.task('extract-files', (done) => {
-
-  SetskippedFiles = new Set(skippedFiles)
-
-  if ([...SetskippedFiles].length === 0) return done();
-
-  gulp
-    .src([...SetskippedFiles])
-    .pipe(gulp.dest(path.join(templateOpts.compile.dest, config.project.paths.assets, 'vendor')));
-
-  done();
-});
-
-gulp.task('template-tasks', gulp.series(
-  'template-compile',
-  'extract-vendor-css',
-  'extract-vendor-js',
-  'extract-node-files',
-  'extract-files',
-));
+exports.registry = templateRegistry;

@@ -1,0 +1,15 @@
+/***************************************
+*   Utility classes
+***************************************/
+.u-clearfix {
+    @include clearfix;
+}
+.u-verticalAlign {
+    @include verticalAlign;
+}
+.u-hidden {
+    display: none;
+}
+.u-visuallyHidden {
+    @include visuallyHidden;
+}

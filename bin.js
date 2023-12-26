@@ -22,7 +22,7 @@ const opts = [];
 const gulpfile = program.gulpfile ? program.gulpfile : 'node_modules/@buddywinangun/gulp-xtend/gulpfile.js';
 const cwd = program.cwd ? program.cwd : process.cwd();
 
-if (program.production) opts.push('--production');
+if (program.production === true) opts.push('--production');
 opts.push('--gulpfile', gulpfile);
 opts.push('--cwd', cwd);
 

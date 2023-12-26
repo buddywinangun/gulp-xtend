@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="{{options.lang}}" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+  <title>{{(block('title'))}} - Sample</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="description" content="{{ description }}">
+  <meta itemprop="name" content="{{ title }}">
+  <meta itemprop="description" content="{{ description }}">
+
+  {% set currentYear = 'now'|date('Y') %}
+  <meta http-equiv="Cache-Control" content="max-age=31556926">
+  <meta name="expires" content="{{'now'|date('D, d M')}} {{currentYear +1}}">
+
+  <!-- Twitter-->
+  {% for key, value in Common.twitter %}
+  <meta property="twitter:{{ key }}" content="{{ value }}"/>
+  {% endfor %}
+
+  <!-- Opengraph-->
+  {% for key, value in Common.open_graph %}
+  <meta property="og:{{ key }}" content="{{ value }}"/>
+  {% endfor %}
+
+  <link rel="canonical" href="{{ Common.canonical }}" />
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700">
+
+  {% block vendor_styles %}
+  <!-- Vendor CSS -->
+  <!-- bundlecss:vendor [@@autopath] ?v={{version}} -->
+  {% endblock %}
+
+  {% block styles -%}
+  <!-- CSS -->
+  <link href="@@autopath/css/style.css" rel="stylesheet" type="text/css" />
+  {%- endblock %}
+</head>
+
+<body class="{{ bodyClass }}" {{ bodyAttr ?: '' }}>
+  {{block('content')}}
+
+  {%- block vendor_scripts %}
+  <!-- Vendor JS -->
+  <!-- bundlejs:vendor [@@autopath] ?v={{version}} -->
+  {% endblock %}
+
+  {% block scripts %}
+  <!-- JS -->
+  <script src="@@autopath/js/script.js?v={{version}}" defer></script>
+  {%- endblock %}
+</body>
+
+</html>
