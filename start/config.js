@@ -25,7 +25,6 @@ module.exports = {
     data: './data.json'
   },
   template: {
-    templating: 'twig', // templating use
     data: {
       dir: './src/data',
     },

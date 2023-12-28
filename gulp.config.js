@@ -5,6 +5,7 @@
  */
 
 const cli = require('./lib/cli');
+const fs = require('fs');
 
 const utils = {
   deleteLine: "builder:delete",
@@ -77,7 +78,6 @@ const options = {
     watch: [project.template.src.dir + '/**/*.html'],
     destination: project.template.build.dir,
     extname: project.template.build.extname,
-    data: project.configFile.data,
     min_args: {
       collapseWhitespace: true,
       conservativeCollapse: true,
@@ -86,6 +86,12 @@ const options = {
       minifyCSS: true, // minify inline CSS
       conditionals: true,
       empty: true
+    },
+    twig_args: {
+      data: {...JSON.parse(fs.readFileSync(project.configFile.data, 'utf-8').toString()), ...project},
+      cache: false,
+      functions: [],
+      filters: []
     },
     json: {
       files: [
@@ -110,13 +116,10 @@ const options = {
     sass_args: {
       sourceComments: 'map',
       outputStyle: 'expanded',
-      charset: true,
       importer: [
         require('node-sass-package-importer')(),
         require('node-sass-glob-importer')()
       ],
-      // fiber: require('fibers'),
-      imagePath: project.assets.src.dir + '/' + project.assets.dir + 'images'
     },
     // combineMq_args : { beautify: true },
     autoprefixer_args: {

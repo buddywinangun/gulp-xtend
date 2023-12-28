@@ -6,7 +6,6 @@ const defaultRegistry = require('undertaker-registry');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const replace = require('gulp-replace');
 const path = require('path');
-const fs = require('fs');
 const rename = require("gulp-rename");
 const deleteLines = require("gulp-delete-lines");
 const trim = require('../lib/trim');
@@ -52,31 +51,11 @@ templateRegistry.prototype.init = function (gulpInst) {
   });
 
   gulpInst.task('template:compile', () => {
-    let data = fs.readFileSync(opts.options.template.data, 'utf-8');
-    data = JSON.parse(data.toString());
-    json_data = data;
-
-    if(opts.project.template.templating == 'twig') {
-      let twig_args = {
-          data: {...json_data, ...opts.project},
-          cache: false,
-          functions: [],
-          filters: []
-      };
-
-      return src(opts.options.template.files)
-        .pipe($.twig(twig_args))
-        .pipe(rename({extname: opts.options.template.extname}))
-        // .pipe($.replace(/\{\*timestamp\*\}/g, opts.timestamp))
-        .pipe(dest(opts.options.template.destination));
-    }
-    else {
-      return src(opts.options.template.files)
-        .pipe(templateCompile(opts.options.template.nunjucks_args))
-        .pipe(rename({extname: opts.options.template.extname}))
-        .pipe(trim())
-        .pipe(dest(opts.options.template.destination));
-    }
+    return src(opts.options.template.files)
+      .pipe($.twig(opts.options.template.twig_args))
+      .pipe(rename({extname: opts.options.template.extname}))
+      // .pipe($.replace(/\{\*timestamp\*\}/g, opts.timestamp))
+      .pipe(dest(opts.options.template.destination));
   });
 
   gulpInst.task('template:minify', () => {
