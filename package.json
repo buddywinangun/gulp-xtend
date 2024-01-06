@@ -1,6 +1,6 @@
 {
   "name": "@buddywinangun/gulp-xtend",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "A Starter kit for frontend development with Gulp.js",
   "license": "MIT",
   "homepage": "https://github.com/buddywinangun/gulp-xtend#readme",
@@ -16,7 +16,6 @@
   },
   "keywords": [
     "gulp",
-    "nunjucks-templates",
     "browser-sync",
     "projects-build"
   ],
@@ -83,7 +82,7 @@
     "gulp-stylelint": "^13.0.0",
     "gulp-svgmin": "^4.1.0",
     "gulp-terser": "^2.1.0",
-    "gulp-twig": "^1.2.0",
+    "gulp-twing": "^4.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglify-es": "^3.0.0",
     "gulp-util": "^3.0.8",
@@ -92,11 +91,12 @@
     "merge-stream": "^2.0.0",
     "node-sass-glob-importer": "^5.3.3",
     "node-sass-package-importer": "^5.3.3",
-    "nunjucks": "^3.2.4",
     "path": "^0.12.7",
     "postcss": "8.4.32",
+    "rollup-plugin-glob-import": "^0.5.0",
     "sass": "^1.69.4",
     "stylelint": "^16.0.1",
+    "twing": "^5.2.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   }

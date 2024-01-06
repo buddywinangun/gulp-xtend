@@ -77,7 +77,6 @@ const options = {
     watch: [project.template.src.dir + '/**/*.html'],
     destination: project.template.build.dir,
     extname: project.template.build.extname,
-    data: project.configFile.data,
     min_args: {
       collapseWhitespace: true,
       conservativeCollapse: true,
@@ -110,13 +109,10 @@ const options = {
     sass_args: {
       sourceComments: 'map',
       outputStyle: 'expanded',
-      charset: true,
       importer: [
         require('node-sass-package-importer')(),
         require('node-sass-glob-importer')()
       ],
-      // fiber: require('fibers'),
-      imagePath: project.assets.src.dir + '/' + project.assets.dir + 'images'
     },
     // combineMq_args : { beautify: true },
     autoprefixer_args: {

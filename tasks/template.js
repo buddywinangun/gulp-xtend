@@ -5,20 +5,19 @@ const util = require('util');
 const defaultRegistry = require('undertaker-registry');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const replace = require('gulp-replace');
-const path = require('path');
 const fs = require('fs');
-const rename = require("gulp-rename");
+const path = require('path');
 const deleteLines = require("gulp-delete-lines");
-const trim = require('../lib/trim');
 const alert = require('../lib/alert');
 const $ = gulpLoadPlugins({
   camelize: true,
   rename : {'gulp-util' : 'gutil'}
 });
 
-// -- Compile
-
-const templateCompile = require('../lib/template');
+// -- Twig
+const {TwingEnvironment, TwingLoaderRelativeFilesystem} = require('twing');
+let env = new TwingEnvironment(new TwingLoaderRelativeFilesystem(), {debug:true});
+env.on('template', () => env.loadedTemplates.clear())
 
 // -- Registry
 
@@ -52,31 +51,11 @@ templateRegistry.prototype.init = function (gulpInst) {
   });
 
   gulpInst.task('template:compile', () => {
-    let data = fs.readFileSync(opts.options.template.data, 'utf-8');
-    data = JSON.parse(data.toString());
-    json_data = data;
-
-    if(opts.project.template.templating == 'twig') {
-      let twig_args = {
-          data: {...json_data, ...opts.project},
-          cache: false,
-          functions: [],
-          filters: []
-      };
-
-      return src(opts.options.template.files)
-        .pipe($.twig(twig_args))
-        .pipe(rename({extname: opts.options.template.extname}))
-        // .pipe($.replace(/\{\*timestamp\*\}/g, opts.timestamp))
-        .pipe(dest(opts.options.template.destination));
-    }
-    else {
-      return src(opts.options.template.files)
-        .pipe(templateCompile(opts.options.template.nunjucks_args))
-        .pipe(rename({extname: opts.options.template.extname}))
-        .pipe(trim())
-        .pipe(dest(opts.options.template.destination));
-    }
+    return src(opts.options.template.files)
+      .pipe($.twing(env,
+        {...JSON.parse(fs.readFileSync(opts.project.configFile.data, 'utf-8').toString()), ...opts.project},
+        {outputExt: opts.options.template.extname}))
+      .pipe(dest(opts.options.template.destination));
   });
 
   gulpInst.task('template:minify', () => {

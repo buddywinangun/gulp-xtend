@@ -21,6 +21,7 @@ const { nodeResolve } = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const rollupStream = require('@rollup/stream');
 const eslint = require('gulp-eslint');
+const globImport = require('rollup-plugin-glob-import');
 
 // -- Registry
 
@@ -66,6 +67,7 @@ scriptRegistry.prototype.init = function(gulpInst) {
 					babel(opts.options.script.babel_args),
 					nodeResolve(opts.options.script.resolve_args),
 					commonjs(),
+					globImport()
 				]
 			})
 				.pipe(source(path.basename(entry)))

@@ -7,14 +7,14 @@
 Fitur utama meliputi:
 
 - Optimize SVGs.
-- Copy static files and folders into your `dist` directory.
-- Can easily develop themes using popular web frameworks like [Bootstrap](https://getbootstrap.com/), [Tailwind CSS](https://tailwindcss.com/).
-- Automatically add headers and project details to JS and CSS files.
-- **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
-- Compile, minify, and autoprefix Sass.
 - Concatenate, and minify JavaScript.
-- **Webpack Compiler js** Code splitting, `es/ejs/amd` format, dan js Next-Gen ditangani oleh kompiler **webpack-stream**
+- Compile, minify, and autoprefix Sass.
+- Copy static files and folders into your `dist` directory.
+- Automatically add headers and project details to JS and CSS files.
 - Watch for file changes, and automatically recompile build and reload webpages.
+- Can easily develop themes using popular web frameworks like [Bootstrap](https://getbootstrap.com/).
+- **Rollup Compiler js** Code splitting, `es/ejs/amd` format, dan js Next-Gen ditangani oleh kompiler **rollup-stream**
+- **Project Configuration** tersedia di setiap konfigurasi proyek untuk kebutuhan proyek itu sendiri sebagai pembeda proyek satu dengan yang lain.
 
 ## Tools Supported
 
@@ -44,11 +44,15 @@ Lihat [Release schedule](/CHANGELOG.md#release-schedule) untuk jadwal rilis terb
 ```bash
 mkdir my_directory; cd my_directory
 ```
-2. Install Gulp dependencies
+2. Add the .npmrc file to include a line specifying GitHub Packages URL and the namespace where the package is hosted.
+```bash
+@buddywinangun:registry=https://npm.pkg.github.com
+```
+3. Install Gulp dependencies
 ```bash
 npm install @buddywinangun/gulp-xtend
 ```
-3. Run the compiler
+4. Run the compiler
 ```bash
 npm start
 ```
