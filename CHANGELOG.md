@@ -12,10 +12,10 @@ Semua perubahan penting pada proyek ini akan didokumentasikan dalam file ini.
 | [4.x][] | **Current**     | 2023-12-26      | TBD              | TBD                   | TBD         |
 | 5.x     | **Pending**     | TBD             | TBD              | TBD                   | TBD         |
 
-[1.x]: https://github.com/buddywinangun/gulp-xtend/tree/1.0.0
-[2.x]: https://github.com/buddywinangun/gulp-xtend/tree/2.0.0
-[3.x]: https://github.com/buddywinangun/gulp-xtend/tree/3.0.0
-[4.x]: https://github.com/buddywinangun/gulp-xtend/tree/4.0.0
+[1.x]: https://github.com/buddywinangun/gulp-xtend/tree/v1.x
+[2.x]: https://github.com/buddywinangun/gulp-xtend/tree/v2.x
+[3.x]: https://github.com/buddywinangun/gulp-xtend/tree/v3.x
+[4.x]: https://github.com/buddywinangun/gulp-xtend/tree/v4.x
 
 ## Release Phases
 
@@ -28,32 +28,3 @@ Ada tiga fase rilis: 'Current', 'Active Long Term Support (LTS)', and 'Maintenan
 ## Release plan
 
 Rilis baru dibuat dari branch `master` ke versi mayor *Active*. Lihat [Releases Phases](#release-phases) untuk rincian perubahan apa yang diharapkan terjadi pada setiap fase rilis.
-
-Format didasarkan pada [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-dan menggunakan [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased](https://github.com/buddywinangun/gulp-xtend/compare/5.0.0...HEAD)
-
-## [4.1.0] - 2024-01-06
-
-### Fixed
-
-- Bug task copy dependencies
-
-### Changed
-
-- readme.md
-- Upgrade task script
-- Upgrade task template
-- Upgrade boileplate start
-
-### Added
-
-- Dependencies twing
-- Dependencies gulp-twing
-- Dependencies rollup-plugin-glob-import
-
-### Removed
-
-- Dependencies nunjucks template
-- Dependencies gulp-twig
