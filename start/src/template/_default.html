@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
-  <title>{{(block('title'))}} - Sample</title>
+  <title>{% block title %}{% endblock %} - Sample</title>
 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -38,12 +38,12 @@
 
   {% block styles -%}
   <!-- CSS -->
-  <link href="@@autopath/css/style.css" rel="stylesheet" type="text/css" />
+  <link href="@@autopath/assets/css/style.css" rel="stylesheet" type="text/css" />
   {%- endblock %}
 </head>
 
-<body class="{{ bodyClass }}" {{ bodyAttr ?: '' }}>
-  {{block('content')}}
+<body class="{{ bodyClass }}" {{ bodyAttr|raw ?: '' }}>
+  {% block content %}{% endblock %}
 
   {%- block vendor_scripts %}
   <!-- Vendor JS -->
@@ -52,7 +52,7 @@
 
   {% block scripts %}
   <!-- JS -->
-  <script src="@@autopath/js/script.js?v={{version}}" defer></script>
+  <script src="@@autopath/assets/js/script.js?v={{version}}" defer></script>
   {%- endblock %}
 </body>
 

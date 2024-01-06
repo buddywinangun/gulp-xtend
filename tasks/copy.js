@@ -19,14 +19,14 @@ copyRegistry.prototype.init = function (gulpInst) {
 
   gulpInst.task('copy:dependencies', (cb) => {
     for (var k in opts.project.copyDependencies) {
-      getpath = path.join(opts.project.dir, k);
+      getpath = k;
 
       if (k.search('node_modules') !== 0) {
-        getpath = path.join(opts.project.dir, k);
+        getpath = opts.project.assets.src.dir + '/' + k;
       }
 
       src(getpath)
-        .pipe(dest(path.join(opts.options.copy.destination, opts.project.copyDependencies[k])))
+        .pipe(dest(opts.project.assets.build.dir + '/' + opts.project.copyDependencies[k]))
     }
     cb();
   });

@@ -5,7 +5,6 @@
  */
 
 const cli = require('./lib/cli');
-const fs = require('fs');
 
 const utils = {
   deleteLine: "builder:delete",
@@ -86,12 +85,6 @@ const options = {
       minifyCSS: true, // minify inline CSS
       conditionals: true,
       empty: true
-    },
-    twig_args: {
-      data: {...JSON.parse(fs.readFileSync(project.configFile.data, 'utf-8').toString()), ...project},
-      cache: false,
-      functions: [],
-      filters: []
     },
     json: {
       files: [

@@ -5,19 +5,19 @@ const util = require('util');
 const defaultRegistry = require('undertaker-registry');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const replace = require('gulp-replace');
+const fs = require('fs');
 const path = require('path');
-const rename = require("gulp-rename");
 const deleteLines = require("gulp-delete-lines");
-const trim = require('../lib/trim');
 const alert = require('../lib/alert');
 const $ = gulpLoadPlugins({
   camelize: true,
   rename : {'gulp-util' : 'gutil'}
 });
 
-// -- Compile
-
-const templateCompile = require('../lib/template');
+// -- Twig
+const {TwingEnvironment, TwingLoaderRelativeFilesystem} = require('twing');
+let env = new TwingEnvironment(new TwingLoaderRelativeFilesystem(), {debug:true});
+env.on('template', () => env.loadedTemplates.clear())
 
 // -- Registry
 
@@ -52,9 +52,9 @@ templateRegistry.prototype.init = function (gulpInst) {
 
   gulpInst.task('template:compile', () => {
     return src(opts.options.template.files)
-      .pipe($.twig(opts.options.template.twig_args))
-      .pipe(rename({extname: opts.options.template.extname}))
-      // .pipe($.replace(/\{\*timestamp\*\}/g, opts.timestamp))
+      .pipe($.twing(env,
+        {...JSON.parse(fs.readFileSync(opts.project.configFile.data, 'utf-8').toString()), ...opts.project},
+        {outputExt: opts.options.template.extname}))
       .pipe(dest(opts.options.template.destination));
   });
 
