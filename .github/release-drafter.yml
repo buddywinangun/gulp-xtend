@@ -1,60 +1,56 @@
-name-template: 'v$NEXT_MAJOR_VERSION'
-tag-template: '$NEXT_MAJOR_VERSION'
-prerelease: true
-exclude-labels:
-  - 'skip-changelog'
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+# prerelease-identifier: 'alpha' # alpha, beta, rc
+# prerelease: true
+# filter-by-commitish: true
+# commitish: v1.x
+
 categories:
-  - title: '❗ Breaking Changes'
+  - title: 'Dependency Updates'
+    label: 'dependencies'
+    collapse-after: 5
+
+version-resolver:
+  major:
     labels:
-      - 'breaking-change'
-  - title: '🚀 Highlights'
+      - 'breaking change'
+      - 'removed'
+  minor:
     labels:
-      - 'release-highlight'
-  - title: '🚀 Features'
-    labels:
-      - 'new-feature'
       - 'feature'
-      - 'enhancement'
-  - title: '🐛 Bug fixes'
-    labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
-  - title: '⚡ Performance improvements'
-    labels:
-      - 'performance'
-  - title: '🎨 CSS'
-    labels:
-      - 'css'
-  - title: '☕️ JavaScript'
-    labels:
-      - 'js'
-  - title: '📖 Docs'
-    labels:
-      - 'docs'
-  - title: '🛠 Examples'
-    labels:
-      - 'examples'
-  - title: '🌎 Accessibility'
-    labels:
-      - 'accessibility'
-  - title: '🔧 Utility API'
-    labels:
-      - 'utility API'
-      - 'utilities'
-  - title: '🏭 Tests'
-    labels:
-      - 'tests'
-  - title: '🧰 Misc'
-    labels:
-      - 'build'
-      - 'meta'
-      - 'chore'
-      - 'CI'
-  - title: '📦 Dependencies'
-    labels:
-      - 'dependencies'
-change-template: '- #$NUMBER: $TITLE'
+  default: patch
+
+autolabeler:
+  - label: 'breaking change'
+    title:
+      - '/new:/i'
+  - label: 'feature'
+    title:
+      - '/added:/i'
+  - label: 'changed'
+    title:
+      - '/changed:/i'
+  - label: 'deprecated'
+    title:
+      - '/deprecated:/i'
+  - label: 'removed'
+    title:
+      - '/removed:/i'
+  - label: 'fixed'
+    title:
+      - '/fixed:/i'
+  - label: 'security'
+    title:
+      - '/security:/i'
+  - label: 'dependencies'
+    title:
+      - '/dependencies:/i'
+  - label: 'documentation'
+    title:
+      - '/docs:/i'
+
 template: |
-  ## Changes
+
   $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION

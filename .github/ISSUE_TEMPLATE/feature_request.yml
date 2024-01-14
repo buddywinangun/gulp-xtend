@@ -1,18 +1,18 @@
 name: Feature request
-description: Suggest new or updated features to include in gulp-xtend.
-title: "Suggest a new feature"
+description: Create a new ticket for a new feature request
+title: "💡 [REQUEST] - <title>"
 labels: [feature]
-assignees: []
 body:
   - type: checkboxes
     attributes:
       label: Prerequisites
       description: Take a couple minutes to help our maintainers work faster.
       options:
-        - label: I have [searched](https://github.com/buddywinangun/gulp-xtend/issues) for duplicate or closed feature requests
+        - label: I have [searched] for duplicate or closed feature requests
           required: true
-        - label: I have read the [contributing guidelines](https://github.com/buddywinangun/gulp-xtend/blob/main/.github/CONTRIBUTING.md)
+        - label: I have read the [contributing guidelines](../CONTRIBUTING.md)
           required: true
+
   - type: textarea
     id: proposal
     attributes:
@@ -20,6 +20,7 @@ body:
       description: Provide detailed information for what we should add, including relevant links to prior art, screenshots, or live demos whenever possible.
     validations:
       required: true
+
   - type: textarea
     id: motivation
     attributes:

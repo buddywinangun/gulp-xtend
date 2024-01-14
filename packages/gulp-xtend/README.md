@@ -31,32 +31,6 @@ Alat pendukung yang tersedia untuk membangun proyek yang luar biasa.
 
 Lihat [Release schedule](/CHANGELOG.md#release-schedule) untuk jadwal rilis terbaru. Dan daftar riwayat dapat ditemukan di [CHANGELOG](/CHANGELOG.md#changelog).
 
-## Requirements
-
-- **[Node.js](https://nodejs.org/en/)** Versi node yang dibutuhkan adalah >= `20.8`
-- **[npm](https://www.npmjs.com/)** Version  `7.20.*`
-
-> Jika sebelumnya Anda telah menginstal gulp secara global, jalankan `npm rm --global gulp` sebelum mengikuti petunjuk berikut.
-
-## Quickstart
-
-1. Create and Navigate to the newly project directory
-```bash
-mkdir my_directory; cd my_directory
-```
-2. Add the .npmrc file to include a line specifying GitHub Packages URL and the namespace where the package is hosted.
-```bash
-@buddywinangun:registry=https://npm.pkg.github.com
-```
-3. Install Gulp dependencies
-```bash
-npm install @buddywinangun/gulp-xtend
-```
-4. Run the compiler
-```bash
-npm start
-```
-
 ## Contributing
 
 Panduan kontribusi dapat ditemukan di [CONTRIBUTING](.github/CONTRIBUTING.md).

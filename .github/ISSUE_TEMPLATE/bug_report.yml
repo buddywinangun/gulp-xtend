@@ -1,43 +1,57 @@
-name: Report a bug
-description: Tell us about a bug or issue you may have identified in gulp-xtend.
-title: "Provide a general summary of the issue"
+name: Bug Report
+description: Create a new ticket for a bug.
+title: "🐛 [BUG] - <title>"
 labels: ["bug"]
-assignees: "-"
 body:
   - type: checkboxes
     attributes:
       label: Prerequisites
       description: Take a couple minutes to help our maintainers work faster.
       options:
-        - label: I have [searched](https://github.com/buddywinangun/gulp-xtend/issues?utf8=%E2%9C%93&q=is%3Aissue) for duplicate or closed issues
+        - label: I have [searched] for duplicate or closed issues
           required: true
-        - label: I have [validated](https://html5.validator.nu/) any HTML to avoid common problems
+        - label: I have read the [contributing guidelines](./CONTRIBUTING.md)
           required: true
-        - label: I have read the [contributing guidelines](https://github.com/buddywinangun/gulp-xtend/blob/main/.github/CONTRIBUTING.md)
-          required: true
+
   - type: textarea
-    id: what-happened
+    id: description
     attributes:
-      label: Describe the issue
-      description: Provide a summary of the issue and what you expected to happen, including specific steps to reproduce.
+      label: "Description"
+      description: Please enter an explicit description of your issue
+      placeholder: Short and explicit description of your incident...
     validations:
       required: true
+
   - type: textarea
-    id: reduced-test-case
+    id: reprod
     attributes:
-      label: Reduced test cases
-      description: Langkah-langkah untuk melihat issue terkait topik ini.
-      placeholder: |
+      label: "Reproduction steps"
+      description: Please enter an explicit description of your issue
+      value: |
         1. Go to '...'
         2. Click on '...'
         3. Scroll down to '...'
         4. See error
+      render: bash
     validations:
       required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "Screenshots"
+      description: If applicable, add screenshots to help explain your problem.
+      value: |
+        ![DESCRIPTION](LINK.png)
+      render: bash
+    validations:
+      required: false
+
   - type: dropdown
     id: browser
     attributes:
-      label: What browser(s) are you seeing the problem on?
+      label: "Browsers"
+      description: What browsers are you seeing the problem on ?
       multiple: true
       options:
         - Chrome
@@ -45,10 +59,14 @@ body:
         - Firefox
         - Microsoft Edge
         - Opera
+    validations:
+      required: false
+
   - type: dropdown
     id: os
     attributes:
-      label: What operating system(s) are you seeing the problem on?
+      label: "OS"
+      description: What is the impacted environment ?
       multiple: true
       options:
         - Windows
@@ -57,17 +75,4 @@ body:
         - iOS
         - Linux
     validations:
-      required: true
-  - type: input
-    id: version
-    attributes:
-      label: What version of Bootstrap are you using?
-      placeholder: "e.g., v5.1.0 or v4.5.2"
-    validations:
-      required: true
-  - type: textarea
-    id: additional-information
-    attributes:
-      label: informasi tambahan
-      description: |
-        Berikan informasi tambahan apa pun seperti log, screenshots, skenario terjadinya bug sehingga memudahkan penyelesaian issue.
+      required: false

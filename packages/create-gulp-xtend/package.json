@@ -1,0 +1,28 @@
+{
+  "name": "@buddywinangun/create-gulp-xtend",
+  "version": "1.2.0",
+  "description": "create gulp xtend template next",
+  "main": "bin.js",
+  "bin": {
+    "create-gulp-xtend": "bin.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "lib",
+    "bin.js"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "4.1.2",
+    "decompress": "^4.2.1",
+    "get-stream": "6.0.1",
+    "got": "11.8.3",
+    "latest-version": "5.1.0",
+    "p-event": "4.2.0",
+    "yargs": "^17.7.2"
+  }
+}

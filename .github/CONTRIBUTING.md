@@ -1,21 +1,4 @@
-# Contributing to Gulp Xtend
-
-Looking to contribute something to Gulp Xtend? **Here's how you can help.**
-
-Please take a moment to review this document in order to make the contribution
-process easy and effective for everyone involved.
-
-Following these guidelines helps to communicate that you respect the time of
-the developers managing and developing this open source project. In return,
-they should reciprocate that respect in addressing your issue or assessing
-patches and features.
-
-## Code guidelines
-## Using the issue tracker
-## Issues assignment
-## Issues and labels
-## Bug reports
-## Feature requests
+# Contributing
 
 Laporan bug, pertanyaan, dan permintaan fitur gunakan [GitHub Issues](/issues).
 
@@ -31,18 +14,7 @@ Laporan bug, pertanyaan, dan permintaan fitur gunakan [GitHub Issues](/issues).
 
 To begin, please fork the project, clone your fork, configure the remotes, and install dependencies:
 
-1. [Fork](https://help.github.com/articles/fork-a-repo/) the project, clone your fork, and configure the remotes:
-
-```bash
-# Clone your fork of the repo into the current directory
-git clone https://github.com/<your-username>/gulp-xtend.git
-# Navigate to the newly cloned directory
-cd gulp-xtend
-# Assign the original repo to a remote called "upstream"
-git remote add upstream https://github.com/buddywinangun/gulp-xtend.git
-# Install dependencies
-npm install
-```
+1. [Fork](https://help.github.com/articles/fork-a-repo/) the project, clone your fork, and configure.
 
 2. If you cloned a while ago, get the latest changes from upstream:
 ```bash

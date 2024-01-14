@@ -1,10 +1,10 @@
 {
   "title": "SITE TEMPLATES PROJECT",
-  "name": "project-name",
+  "name": "@buddywinangun/create-gulp-xtend",
   "version": "0.1.0",
-  "description": "Project description.",
+  "description": "Start Project with Gulp Xtend.",
   "license": "MIT",
-  "homepage": "http://link-to-your-website.com",
+  "homepage": "https://github.com/buddywinangun/create-gulp-xtend",
   "main": "index.js",
   "scripts": {
     "start": "gulp-xtend",
@@ -13,11 +13,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
-    "name": "YOUR NAME",
-    "url": "http://link-to-your-website.com"
+    "name": "Buddy Winangun",
+    "email": "buddywinangun@gmail.com",
+    "url": "https://github.com/buddywinangun"
   },
   "repository": {
     "type": "git",
-    "url": "http://link-to-your-git-repo.com"
+    "url": "https://github.com/buddywinangun/create-gulp-xtend.git"
   }
 }
