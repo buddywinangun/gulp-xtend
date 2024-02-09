@@ -1,6 +1,12 @@
-## About Gulp Xtend
+# Gulp Xtend
 
-**Gulp Xtend** adalah alat yang kami rancang sebagai prototipe template HTML5 multi-project yang bertujuan untuk memudahkan pengembang front-end dalam membangun antarmuka pengguna yang dituangkan dalam bentuk visual web dari desain yang telah ditentukan dengan arsitektur yang baik menggunakan [gulp.js](https://gulpjs.com/) dan fleksibilitas JavaScript.
+> Frontend Tooling with [gulp.js](https://gulpjs.com/).
+
+## Table of contents
+
+* [Features](#features)
+* [Tools Supported](#tools-supported)
+* [Changelog](#changelog)
 
 ## Features
 
@@ -26,15 +32,3 @@ Alat pendukung yang tersedia untuk membangun proyek yang luar biasa.
 - [**Sass**](http://sass-lang.com/) CSS pre-processor dengan [gulp-autoprefixer](https://www.npmjs.com/package/gulp-autoprefixer)
 - [**Rollupjs**](https://rollupjs.org/) Bundel modul untuk JavaScript
 - [**ES2015 Babel**](https://babeljs.io/) Transpiler yang memungkinkan Anda menulis Kode JS dengan gaya ES2015/ES6.
-
-## Release
-
-Lihat [Release schedule](/CHANGELOG.md#release-schedule) untuk jadwal rilis terbaru. Dan daftar riwayat dapat ditemukan di [CHANGELOG](/CHANGELOG.md#changelog).
-
-## Contributing
-
-Panduan kontribusi dapat ditemukan di [CONTRIBUTING](.github/CONTRIBUTING.md).
-
-## License
-
-Gulp Xtend dilisensikan di bawah [MIT license](/LICENSE.md).

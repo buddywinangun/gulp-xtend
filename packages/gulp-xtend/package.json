@@ -1,13 +1,13 @@
 {
   "name": "@buddywinangun/gulp-xtend",
-  "version": "4.1.0",
+  "version": "4.0.0",
   "description": "A Starter kit for frontend development with Gulp.js",
   "license": "MIT",
   "homepage": "https://github.com/buddywinangun/gulp-xtend#readme",
   "main": "gulpfile.js",
   "scripts": {
-    "postinstall": "node ./postinstall-script.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "release": "semantic-release"
   },
   "author": {
     "name": "Buddy Winangun",
@@ -23,9 +23,6 @@
     "lib",
     "tasks",
     "bin.js",
-    "start",
-    "start/.npmrc",
-    "postinstall-script.js",
     "gulp.config.js",
     "gulpfile.js"
   ],
@@ -34,11 +31,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/buddywinangun/gulp-xtend.git"
+    "url": "git+https://github.com/buddywinangun/gulp-xtend.git",
+    "directory": "packages/gulp-xtend"
   },
   "engines": {
-    "node": ">= 18.x",
-    "npm": ">= 8.0.0"
+    "node": "^18.0.0 || >=20.0.0"
   },
   "bugs": {
     "url": "https://github.com/buddywinangun/gulp-xtend/issues",
@@ -99,5 +96,9 @@
     "twing": "^5.2.2",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "release-config": "workspace:^"
   }
 }

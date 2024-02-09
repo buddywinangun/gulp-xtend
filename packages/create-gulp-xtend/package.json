@@ -1,20 +1,28 @@
 {
   "name": "@buddywinangun/create-gulp-xtend",
-  "version": "1.2.0",
-  "description": "create gulp xtend template next",
+  "version": "0.1.0",
+  "description": "Create Project with Gulp Xtend.",
   "main": "bin.js",
   "bin": {
     "create-gulp-xtend": "bin.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "release": "semantic-release"
   },
   "files": [
     "lib",
     "bin.js"
   ],
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Buddy Winangun",
+    "email": "buddywinangun@gmail.com",
+    "url": "https://github.com/buddywinangun"
+  },
+  "repository": "https://github.com/buddywinangun/gulp-xtend.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "license": "MIT",
   "dependencies": {
     "chalk": "4.1.2",
@@ -24,5 +32,8 @@
     "latest-version": "5.1.0",
     "p-event": "4.2.0",
     "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "release-config": "workspace:^"
   }
 }

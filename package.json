@@ -1,11 +1,23 @@
 {
+  "name": "@buddywinangun/gulp-xtend-monorepo",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "type": "module",
+  "engines": {
+    "node": "^18.0.0 || >=20.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "release": "turbo release --concurrency=1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",
     "@commitlint/config-conventional": "^18.4.4",
-    "husky": "^8.0.3"
-  }
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "husky": "^8.0.3",
+    "semantic-release": "^23.0.2",
+    "semantic-release-monorepo": "^8.0.2",
+    "turbo": "^1.12.3"
+  },
+  "packageManager": "pnpm@8.15.1"
 }

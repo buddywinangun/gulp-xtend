@@ -1,0 +1,28 @@
+{
+  "title": "SITE TEMPLATES PROJECT",
+  "name": "@buddywinangun/starter-gulp-xtend",
+  "version": "0.2.0",
+  "description": "Start Project with Gulp Xtend.",
+  "license": "MIT",
+  "homepage": "https://github.com/buddywinangun/gulp-xtend",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp-xtend",
+    "watch": "gulp-xtend --task watch",
+    "build": "gulp-xtend --task build --production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Buddy Winangun",
+    "email": "buddywinangun@gmail.com",
+    "url": "https://github.com/buddywinangun"
+  },
+  "repository": "https://github.com/buddywinangun/gulp-xtend.git",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@buddywinangun/gulp-xtend": "*"
+  }
+}

@@ -1,25 +1,25 @@
-**IMPORTANT: Please do not create a Pull Request without creating an issue first.**
+<!-- Thank you for contributing! -->
 
-Closes #
+### Description
 
-## Description
+<!-- Please insert your description here and provide especially info about the "what" this PR is solving -->
 
-<!-- Describe your changes in detail -->
+### Additional context
 
-## Type of changes
+<!-- e.g. is there anything you'd like reviewers to focus on? -->
 
-<!-- What types of changes does your code introduce? Put an `x` in all the boxes that apply. -->
+---
 
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Refactoring (non-breaking change)
-- [ ] Breaking change (fix or feature that would change existing functionality)
+### What is the purpose of this pull request? <!-- (put an "X" next to an item) -->
 
-## Checklist
+- [ ] Bug fix
+- [ ] New Feature
+- [ ] Documentation update
+- [ ] Other
 
-<!-- Go over all the following points, and put an `x` in all the boxes that apply. -->
+### Before submitting the PR, please make sure you do the following
 
-- [ ] My code follows the code style of this project.
-- [ ] My change introduces changes to the documentation
-- [ ] I have updated the documentation accordingly
-- [ ] All new and existing tests passed
+- [ ] Check that there isn't already a PR that solves the problem the same way to avoid creating a duplicate.
+- [ ] Provide a description in this PR that addresses **what** the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
+- [ ] Update the corresponding documentation if needed.
+- [ ] Ideally, include relevant tests that fail without this PR but pass with it.

@@ -1,30 +1,16 @@
-# Changelog
+# [@buddywinangun/gulp-xtend-v5.0.0](https://github.com/buddywinangun/gulp-xtend/compare/v4.0.0...v5.0.0) (2024-02-09)
 
-Semua perubahan penting pada proyek ini akan didokumentasikan dalam file ini.
 
-## Release schedule
+### Bug Fixes
 
-| Release | Status          | Initial Release | Active LTS Start | Maintenance LTS Start | End-of-life |
-| :-----: | :-------------: | :-------------: | :--------------: | :-------------------: | :---------: |
-| [1.x][] | **End-of-life** | 2017-10-19      | -                | 2023-10-22            | 2023-10-29  |
-| [2.x][] | **Maintenance** | 2023-10-29      | 2023-10-30       | 2023-11-01            | TBD         |
-| [3.x][] | **Active LTS**  | 2023-11-01      | 2023-11-18       | TBD                   | TBD         |
-| [4.x][] | **Current**     | 2023-12-26      | TBD              | TBD                   | TBD         |
-| 5.x     | **Pending**     | TBD             | TBD              | TBD                   | TBD         |
+* package.json ([8617ee3](https://github.com/buddywinangun/gulp-xtend/commit/8617ee3412f5ba1382f291eb313c42dbbfcccf18))
+* package.json ([5364c23](https://github.com/buddywinangun/gulp-xtend/commit/5364c234313dabc3932fdf354802916102cb4369))
+* release config ([77b425e](https://github.com/buddywinangun/gulp-xtend/commit/77b425ee9e113a795bb0b7d5d68d3e01685c86dc))
+* release config ([57dd61f](https://github.com/buddywinangun/gulp-xtend/commit/57dd61feaa6b26877f1b09d99efdeeea93adaf99))
+* repository property ([4b6353f](https://github.com/buddywinangun/gulp-xtend/commit/4b6353f520749d80038d842405eab179b8a1422a))
+* tag format relase ([e6b5d12](https://github.com/buddywinangun/gulp-xtend/commit/e6b5d12c0a3fea4ee6f9bd46d02815b7cf051abf))
 
-[1.x]: https://github.com/buddywinangun/gulp-xtend/tree/v1.x
-[2.x]: https://github.com/buddywinangun/gulp-xtend/tree/v2.x
-[3.x]: https://github.com/buddywinangun/gulp-xtend/tree/v3.x
-[4.x]: https://github.com/buddywinangun/gulp-xtend/tree/v4.x
 
-## Release Phases
+### Performance Improvements
 
-Ada tiga fase rilis: 'Current', 'Active Long Term Support (LTS)', and 'Maintenance'.
-
- * Current - Kode tidak stabil di branch `master` yang sedang dalam pengembangan aktif dan mungkin mengandung bug atau perubahan yang dapat menyebabkan gangguan serta masih mengalami modifikasi signifikan. Direkomendasikan untuk tujuan pembangunan lokal, dan tidak boleh digunakan dalam produksi.
- * Active LTS - Branch versi mayor - cth:(v1.x), dengan fokus pada stabilitas, Fitur baru, perbaikan bug, and keamanan.
- * Maintenance - Branch versi mayor - cth:(v1.x), dengan fokus pada perbaikan bug dan peningkatan keamanan. Terkait fitur baru mungkin ditambahkan jika mendukung migrasi ke rilis selanjutnya.
-
-## Release plan
-
-Rilis baru dibuat dari branch `master` ke versi mayor *Active*. Lihat [Releases Phases](#release-phases) untuk rincian perubahan apa yang diharapkan terjadi pada setiap fase rilis.
+* upgrade repo to monorepo ([0270a3b](https://github.com/buddywinangun/gulp-xtend/commit/0270a3bb541307a40530b4daa443c3730e045833))

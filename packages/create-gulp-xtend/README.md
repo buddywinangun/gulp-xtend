@@ -1,25 +1,24 @@
-# About
-
-**This project has a [Code of Conduct][].**
+> Create Gulp Xtend based theme using command line and starter template as a head start.
 
 ## Table of contents
 
-* [Support](#support)
-* [Release types](#release-types)
-  * [Download](#download)
-    * [Current and LTS releases](#current-and-lts-releases)
-    * [API documentation](#api-documentation)
-* [License](#license)
+* [Usage](#usage)
+  * [Options](#option)
+* [Changelog](#changelog)
 
-## Support
+## Usage
 
-## Release types
-### Download
-#### Current and LTS releases
-#### API documentation
+- **[Node.js](https://nodejs.org/en/)** Versi node yang dibutuhkan adalah >= `20.8`
+- **[npm](https://www.npmjs.com/)** Version  `7.20.*`
 
-## License
+> Jika sebelumnya Anda telah menginstal gulp secara global, jalankan `npm rm --global gulp` sebelum mengikuti petunjuk berikut.
 
-available under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+$ npx create-gulp-xtend <project-directory> [options]
+```
 
-[Code of Conduct]: ../CODE_OF_CONDUCT.md
+### Options
+
+## Changelog
+
+See [CHANGELOG](/CHANGELOG.md).

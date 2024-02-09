@@ -82,7 +82,7 @@ const argv = yargs.argv;
   pkgVersion = pkgVersion === '' ? pkgVersionLatest : pkgVersionLatestX;
 
   if (isScope) {
-    uri = `https://registry.npmjs.org/${scopeOrg}/${scopePkgName}/-/${scopePkgName}-${scopePkgVersion}.tgz`;
+    uri = `https://npm.pkg.github.com/${scopeOrg}/${scopePkgName}/-/${scopePkgName}-${scopePkgVersion}.tgz`;
   }
   if (!isScope) {
     uri = `https://registry.npmjs.org/${pkgName}/-/${pkgName}-${pkgVersion}.tgz`;
