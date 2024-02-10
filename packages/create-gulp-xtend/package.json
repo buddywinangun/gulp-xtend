@@ -19,7 +19,11 @@
     "email": "buddywinangun@gmail.com",
     "url": "https://github.com/buddywinangun"
   },
-  "repository": "https://github.com/buddywinangun/gulp-xtend.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buddywinangun/gulp-xtend.git",
+    "directory": "packages/create-gulp-xtend"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
