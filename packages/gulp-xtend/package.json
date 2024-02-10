@@ -16,8 +16,7 @@
   },
   "keywords": [
     "gulp",
-    "browser-sync",
-    "projects-build"
+    "builder"
   ],
   "files": [
     "lib",

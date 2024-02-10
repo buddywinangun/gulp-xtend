@@ -3,16 +3,28 @@ run-name: ${{ github.actor }} is automatically releasing
 
 on: push
 
+permissions:
+  contents: read
+
 jobs:
   release:
+    name: Release
+
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      packages: write
+      issues: write
+      pull-requests: write
+      id-token: write
 
     strategy:
       matrix:
         node-version: [20]
 
     steps:
-      - name: 'Generate token'
+      - name: Generate token
         id: generate-token
         uses: actions/create-github-app-token@v1
         with:
@@ -44,4 +56,5 @@ jobs:
         run: pnpm release
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
-          NODE_AUTH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # NODE_AUTH_TOKEN: ${{ steps.generate-token.outputs.token }}
