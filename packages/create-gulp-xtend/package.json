@@ -2,16 +2,16 @@
   "name": "@buddywinangun/create-gulp-xtend",
   "version": "0.1.0",
   "description": "Create Project with Gulp Xtend.",
-  "main": "bin.js",
+  "main": "index.js",
   "bin": {
-    "create-gulp-xtend": "bin.js"
+    "create-gulp-xtend": "index.js"
   },
   "scripts": {
     "release": "semantic-release"
   },
   "files": [
     "lib",
-    "bin.js"
+    "index.js"
   ],
   "keywords": [],
   "author": {

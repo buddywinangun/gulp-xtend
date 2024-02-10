@@ -3,7 +3,6 @@
 ## Table of contents
 
 * [Usage](#usage)
-  * [Options](#option)
 * [Changelog](#changelog)
 
 ## Usage
@@ -16,8 +15,6 @@
 ```bash
 $ npx create-gulp-xtend <project-directory> [options]
 ```
-
-### Options
 
 ## Changelog
 
